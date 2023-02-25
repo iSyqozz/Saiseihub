@@ -268,7 +268,7 @@ const span11 = document.querySelector("#span11");
         soon!.style.textShadow = ""
     }, 800);
     
-}, 4500);
+}, 3200);
 
 
 document.body.onpointermove = event => {

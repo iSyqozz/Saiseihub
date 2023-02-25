@@ -214,7 +214,7 @@ setInterval(() => {
         soon.style.color = "white";
         soon.style.textShadow = "";
     }, 800);
-}, 4500);
+}, 3200);
 document.body.onpointermove = event => {
     const { clientX, clientY } = event;
     blob.animate({
