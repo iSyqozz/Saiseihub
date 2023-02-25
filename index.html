@@ -10,9 +10,30 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <div class="background">
+    </div>
     <div id="blob"></div>
     <div id="blur"></div>
-    <div class="coming-soon">Coming Soon</div>
+    <div class="coming-soon">
+        <span id="span1">C</span>
+        <span id="span2">o</span>
+        <span id="span3">m</span>
+        <span id="span4">i</span>
+        <span id="span5">n</span>
+        <span id="span6">g</span>
+        <span id="span7">&ensp;</span>
+        <span id="span8">S</span>
+        <span id="span9">o</span>
+        <span id="span10">o</span>
+        <span id="span11">n</span>
+    </div>
+    <svg class="curzr" hidden>
+        <filter id="motionblur" x="-100%" y="-100%" width="400%" height="400%">
+          <feGaussianBlur class="curzr-motion-blur" stdDeviation="0, 0"/>
+        </filter>
+        <circle cx="50%" cy="50%" r="10" fill="#120D27" filter="url(#motionblur)" />
+    </svg>
     <script src="./build/main.js"></script>
+    <script src="./build/cursor.js"></script>
 </body>
 </html>
