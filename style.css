@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Mono:400');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik+Glitch&display=swap');
 body{
+  overflow: hidden;
     margin: 0px;
     padding: 0px;
     width: 100%;
@@ -15,6 +16,7 @@ body{
 }
 
 .background {
+  overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -174,4 +176,37 @@ body{
     to{
       rotate:360deg;
     }
+  }
+
+  .lower-logos{
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+    justify-items: center;
+    position: absolute;
+    top: 91%;
+    left: 50%;
+    width: fit-content;
+    height: 10%;
+    transform: translate(-50%);
+  }
+  
+  
+  .lower-logos a img{
+    filter: brightness(0) invert(1);
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+    transition: -webkit-filter 0.5s ease-in-out;
+    opacity: 0.5;
+    transition: opacity 0.5s ease-in-outm padding-bottom 0.5s ease-in-out
+  }
+  
+  .lower-logos a img:hover{
+    filter: drop-shadow(1px 0px 1px rgba(184, 235, 255, 0.993))
+    drop-shadow(-1px 0px 1px rgba(184, 235, 255, 0.993)) brightness(0) invert(1);
+    -webkit-filter: drop-shadow(1px 0px 1px rgba(184, 235, 255, 0.993))
+    drop-shadow(-1px 0px 1px rgba(184, 235, 255, 0.993)) brightness(0) invert(1);
+    opacity: 0.8;
+    padding-bottom: 5px;
   }
