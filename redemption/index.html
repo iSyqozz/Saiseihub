@@ -3,11 +3,86 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Redemption</title>
+    <link rel="stylesheet/less" type="text/css" href="styles/snack.less">
+    <link rel="stylesheet" type="text/css" href="styles/connect-style.css">
+    <link rel="stylesheet" type="text/css" href="styles/main-style.css">
+    <link rel="stylesheet" type="text/css" href="styles/loader.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
 </head>
+
 <body>
 
-    <h1>Hello world</h1>
+  <header>
+    <nav>
+      <div class="nav-left nav-right">
+        <a class="logo"href="#"><img src="./assets/BlackBlueSaiSei.png" alt=""></a>
+        <a class="text" href="#"> <img id="discord-logo" src="./assets/discord.svg" alt=""> Discord</a>
+        <a class="text" href="#"><img id="twitter-logo" src="./assets/twitter.svg" alt="">Twitter</a>
+        <a class="text" href="#"><img id="ME-logo" src="./assets/ME.png" alt=""> Buy Now</a>
+      </div>
+    </nav>
+  </header>
+  
+
+  <div class="modal1">
+    <div class="modal1-box">
+      <div class="modal1-content">
+          <h2 class="modal1-title">Choose a wallet</h2>
+            <button class="wallet-btn" id="Phantom"> <img src="assets/phantom.svg" alt=""><div>Phantom Wallet</div> </button>
+            <button class="wallet-btn" id="Solflare"><img src="assets/solflare.svg" alt=""><div>Solflare Wallet</div></button>
+            <button class="wallet-btn" id="Brave"><img src="assets/Brave.svg" alt=""><div>Brave Wallet</div></button>
+            <button class="wallet-btn" id="Slope"><img src="assets/slope.svg" alt=""><div>Slope Wallet</div></button>
+            <button class="wallet-btn" id="quit"><span>Return</span></button>
+        </div>
+    </div>
+  </div>
+
+<button class="connect-wallet">Connect wallet</button>
+
+
+
+  <!-- 8 -->
+<div class="loader loader--style8" title="7" style="width:fit-content;height: fit-content;">
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+    <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+      <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+    </rect>
+    <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+      <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+    </rect>
+    <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+      <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+    </rect>
+  </svg>
+</div>
+
+
+    <button
+    class="button1"
+  type='button'
+  style="display: none;"
+  data-dismissible='true' 
+  data-message='This is a dismissible snackbar message. Tasty!'  
+  >
+    good button
+</button>
+
+
+  
+
+<script type="module" src="build/red-bundle.js" ></script>
+    
     
 </body>
 </html>

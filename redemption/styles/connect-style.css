@@ -1,0 +1,126 @@
+
+.modal1 {
+    letter-spacing: 2px;
+    font-family: 'Bebas Neue', cursive;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999999999;
+    overflow: auto;
+  }
+  
+  .modal1-box {
+    background: rgb(0, 4, 20);
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    text-align: left;
+    animation-name: modalFadeIn;
+    animation-duration: 1s;
+  
+  }
+  @keyframes modalFadeIn {
+    from {
+      transform: translateY(70%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .modal1-title {
+    font-family: 'Bebas Neue', cursive;    
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Bebas Neue', cursive;
+  }
+  
+  .modal1-content {
+    font-family: 'Bebas Neue', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .wallet-btn {
+    font-family: 'Bebas Neue', cursive;
+    display: block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, rgb(22, 25, 36) 2%, #4e4e50 50%, rgb(22, 25, 36) 98%);
+    cursor: pointer;
+    width: 75%;
+  }
+
+.wallet-btn div{
+    letter-spacing: 0px;
+    float: right;
+    width: 100px;
+    text-align: left;
+}
+
+  .wallet-btn img{
+    position: relative;
+    width: 22px;
+    height: 22px;
+    float: left;
+    margin-bottom: 0px;
+  }
+
+  .wallet-btn:hover{
+    background: linear-gradient(90deg, #ccd0d3 0%, #5f5f61 100%);
+  }
+  
+  #quit{
+    background: #702626;
+    opacity: 1;
+    cursor: pointer;
+  }
+  #quit:hover {
+    background: linear-gradient(90deg, #975e5e 0%, #834242 80%);
+  }
+  #quit span {
+    margin-left: 0;
+  }
+
+
+.connect-wallet{
+  display: none;
+    font-size: 18px;
+    color: #5BA300;
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    border-color: #5BA300;
+    border-width: thin;
+    text-decoration: none;
+    width: 150px;
+    height: 50px;
+    margin-top: 7px;
+    font-family: 'Bebas Neue', cursive;
+    float: right;
+    margin-right: 10px ;
+    transition: background-color 0.3s ease-in-out;
+
+}
+
+.connect-wallet:hover{
+    cursor: pointer;
+    background-color: #5BA300;
+    color: white;
+}

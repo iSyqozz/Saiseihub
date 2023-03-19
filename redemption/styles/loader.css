@@ -1,0 +1,30 @@
+.loader{
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0 0 2em;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto 1em;
+    display: inline-block;
+  }
+
+  .loader--style8{
+    display: none;
+  }
+
+  /*
+    Set the color of the icon
+  */
+  svg path,
+  svg rect{
+    fill: rgb(36, 42, 61);
+  }
+  #layer_1{
+    width: 100px;
+    height: 100px;
+  }

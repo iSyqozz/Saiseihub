@@ -1,0 +1,107 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: rgb(22,74,153);
+    background: linear-gradient(0deg, rgba(22,74,153,1) 7%, rgba(84,102,156,1) 52%, rgba(59,59,129,1) 93%); 
+    background-attachment: fixed;
+}
+
+header {
+    font-family: 'Bebas Neue', cursive;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: #22222267;
+    border-bottom: 1px solid rgb(108, 122, 179);
+}
+  
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  transition: transform 0.25s ease-in-out;
+}
+.logo:hover img{
+    transform: scale(1.1);
+}
+
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+header nav .text:hover{
+    border-bottom: 2px solid rgb(182, 193, 238);
+}
+
+.nav-left a img:hover{
+    filter: drop-shadow(1px 0px 1px rgba(184, 235, 255, 0.993))
+    drop-shadow(-1px 0px 1px rgba(184, 235, 255, 0.993)) brightness(0) invert(1);
+    -webkit-filter: drop-shadow(1px 0px 1px rgba(184, 235, 255, 0.993))
+    drop-shadow(-1px 0px 1px rgba(184, 235, 255, 0.993)) brightness(0) invert(1);
+    opacity: 0.8;
+    border-bottom: none;
+}
+
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80px;
+    transition: transform 0.25s ease-in-out;
+}
+.text:hover{
+    transform: scale(1.2);
+}
+.text:hover img{
+    filter: drop-shadow(1px 0px 1px rgba(184, 235, 255, 0.993))
+    drop-shadow(-1px 0px 1px rgba(184, 235, 255, 0.993)) brightness(0) invert(1);
+    -webkit-filter: drop-shadow(1px 0px 1px rgba(184, 235, 255, 0.993))
+    drop-shadow(-1px 0px 1px rgba(184, 235, 255, 0.993)) brightness(0) invert(1);
+    opacity: 0.8;
+}
+.text img{
+    width: 28px;
+    height: 28px;
+    float: left;
+}
+
+#discord-logo{
+    width: 22;
+    height: 22;
+}
+
+#ME-logo{
+    width: 24;
+    height: 22;
+}
+  
+  
