@@ -1,0 +1,6 @@
+{
+    "cleanUrls": true,
+      "routes": [
+    { "src": "/redemption", "dest": "/redemption/index.html" }
+  ]
+}
