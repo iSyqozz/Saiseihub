@@ -11,16 +11,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const snackbar_1 = require("./snackbar");
+const nav = document.querySelector('header');
 const phantom = document.getElementById('Phantom');
 const solflare = document.getElementById('Solflare');
 const brave = document.getElementById('Brave');
 const slope = document.getElementById('Slope');
 const return_button = document.querySelector('#quit');
 const modal = document.querySelector('.modal1');
+const modal_content = document.querySelector('.modal1-box');
+const connect_loading_ind = document.querySelector('.loader--style8');
 const button1 = document.querySelector('.button1');
+const ME_button = document.querySelector('.me-button');
+const ME_menu = document.querySelector('.dropdown-ME');
+const connect_wallet_button = document.querySelector('.connect-wallet');
+const disconnect_wallet_button = document.querySelector('.disconnect-wallet');
 //global state and control variables
 var wallet_type = '';
 var owner = '';
+var me_dropped = false;
+var content_intersected = false;
+//scroll top nav dim
+window.addEventListener('scroll', function () {
+    if (window.scrollY >= 100 && !content_intersected) {
+        nav.classList.toggle('scrolled-to-content');
+        content_intersected = true;
+    }
+    else if (window.scrollY < 100 && content_intersected) {
+        nav.classList.toggle('scrolled-to-content');
+        content_intersected = false;
+    }
+});
 //checking if requested type is installed or not
 function check_wallet() {
     //phantom check
@@ -112,10 +132,24 @@ function connect_wallet() {
         if (wallet_type === 'slope') {
             try {
                 const slope_obj = new window.Slope();
+                var failed = false;
                 yield slope_obj.connect().then((obje) => {
-                    (0, snackbar_1.showAlert)('Slope Wallet successfully connected!', true, button1);
+                    console.log(obje.data);
+                    if (obje.msg != 'ok') {
+                        failed = true;
+                    }
+                    else {
+                        owner = obje.data.publicKey;
+                    }
                 });
-                return true;
+                if (failed) {
+                    (0, snackbar_1.showAlert)('Failed to connect to Slope Wallet!', false, button1);
+                    return false;
+                }
+                else {
+                    (0, snackbar_1.showAlert)('Slope Wallet successfully connected!', true, button1);
+                    return true;
+                }
             }
             catch (e) {
                 console.log(e);
@@ -127,23 +161,45 @@ function connect_wallet() {
 }
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
+        modal_content.style.display = 'none';
+        connect_loading_ind.style.display = 'block';
         //checking selected wallet
         const is_installed = check_wallet();
         if (!is_installed) {
+            modal_content.style.display = 'block';
+            connect_loading_ind.style.display = 'none';
             //return early from the function
             return;
         }
         //else we connect to the selected wallet
         const connected = yield connect_wallet();
         if (!connected) {
+            modal_content.style.display = 'block';
+            connect_loading_ind.style.display = 'none';
             //return early from the function
             return;
         }
         else {
             console.log(owner);
+            const display_key = owner.substring(0, 6) + '..' + '&#160&#160&#160&#160▾';
+            connect_wallet_button.innerHTML = display_key;
+            modal_content.style.display = 'block';
+            connect_loading_ind.style.display = 'none';
+            modal.style.display = 'none';
+            connect_wallet_button.removeEventListener('click', show_connect_modal);
+            disconnect_wallet_button.style.display = 'block';
         }
     });
 }
+//connect wallet button click
+const show_connect_modal = () => __awaiter(void 0, void 0, void 0, function* () {
+    modal.style.display = 'flex';
+});
+connect_wallet_button.addEventListener('click', show_connect_modal);
+//sidconnect wallet button click
+disconnect_wallet_button.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+    location.reload();
+}));
 //adding event listeners to all wallet buttons
 phantom.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
     wallet_type = 'phantom';
@@ -161,6 +217,17 @@ slope.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function
     wallet_type = 'slope';
     yield main();
 }));
+//ME button dropdown
+ME_button.addEventListener('click', (e) => {
+    if (!me_dropped) {
+        ME_menu.classList.add('dropdown-ME-visible');
+        me_dropped = true;
+    }
+    else {
+        ME_menu.classList.remove('dropdown-ME-visible');
+        me_dropped = false;
+    }
+});
 //return button for connect wallet modal
 return_button.addEventListener('click', function (e) {
     modal.style.display = 'none';

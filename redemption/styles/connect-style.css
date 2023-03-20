@@ -10,7 +10,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 999999999;
     overflow: auto;
   }
@@ -23,8 +23,8 @@
     text-align: left;
     animation-name: modalFadeIn;
     animation-duration: 1s;
-  
   }
+  
   @keyframes modalFadeIn {
     from {
       transform: translateY(70%);
@@ -99,28 +99,51 @@
     margin-left: 0;
   }
 
+.wallet-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
+}
 .connect-wallet{
-  display: none;
+    letter-spacing: 1px;
     font-size: 18px;
-    color: #5BA300;
-    background-color: #FFFFFF;
+    color: #FFFFFF;
+    background:linear-gradient(90deg, #3d33a1, #2c2482 );
     border-radius: 24px;
-    border-color: #5BA300;
-    border-width: thin;
+    border: none;
     text-decoration: none;
     width: 150px;
     height: 50px;
-    margin-top: 7px;
     font-family: 'Bebas Neue', cursive;
-    float: right;
-    margin-right: 10px ;
-    transition: background-color 0.3s ease-in-out;
-
+    margin-right: 0px ;
+    transition: background 0.2s ease-in-out;
 }
 
 .connect-wallet:hover{
+    background:linear-gradient(90deg, #4a439c, #3d33a1 );
     cursor: pointer;
-    background-color: #5BA300;
     color: white;
+}
+
+.disconnect{
+  width: 25px;
+  height: 25px;
+  filter: invert(1);
+
+}
+.disconnect-wallet{
+  display: none;
+  margin-right: 5px;
+  cursor: pointer;
+  float: right;
+  width: 50px;
+  height: 50px;
+  background: #792222;
+  border: none;
+  border-radius: 24px;
+}
+
+.disconnect-wallet:hover{
+  background: linear-gradient(90deg, #975e5e 0%, #834242 80%)
 }

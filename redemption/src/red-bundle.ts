@@ -10,18 +10,38 @@ declare global {
     }
   }
 
+const nav = document.querySelector('header') as HTMLElement;
 const phantom = document.getElementById('Phantom')as HTMLElement;
 const solflare = document.getElementById('Solflare') as HTMLElement;
 const brave = document.getElementById('Brave')as HTMLElement;
 const slope = document.getElementById('Slope') as HTMLElement;
 const return_button = document.querySelector('#quit')as HTMLElement;
 const modal = document.querySelector('.modal1')as HTMLElement;
+const modal_content = document.querySelector('.modal1-box')as HTMLElement;
+const connect_loading_ind = document.querySelector('.loader--style8')as HTMLElement;
 const button1 = document.querySelector('.button1') as HTMLButtonElement;
+const ME_button = document.querySelector('.me-button') as HTMLElement;
+const ME_menu = document.querySelector('.dropdown-ME') as HTMLElement;
+const connect_wallet_button = document.querySelector('.connect-wallet') as HTMLElement;
+const disconnect_wallet_button = document.querySelector('.disconnect-wallet') as HTMLElement;
 
 //global state and control variables
 var wallet_type:string = '';
 var owner:string = '';
+var me_dropped:boolean = false;
+var content_intersected:boolean = false;
 
+
+//scroll top nav dim
+window.addEventListener('scroll',function(){
+    if (window.scrollY >= 100 && !content_intersected){
+        nav.classList.toggle('scrolled-to-content');
+        content_intersected = true;
+    }else if(window.scrollY < 100 && content_intersected){
+        nav.classList.toggle('scrolled-to-content');
+        content_intersected = false;
+    }
+})
 
 
 
@@ -118,10 +138,22 @@ async function connect_wallet(){
     if (wallet_type === 'slope'){
         try{
             const slope_obj = new window.Slope();
+            var failed = false
             await slope_obj.connect().then((obje:any)=>{
-                showAlert('Slope Wallet successfully connected!',true,button1);
+                console.log(obje.data)
+                if (obje.msg != 'ok'){
+                    failed = true
+                }else{
+                    owner = obje.data.publicKey
+                }
             })
-            return true;
+            if(failed){
+                showAlert('Failed to connect to Slope Wallet!',false,button1);
+                return false
+            }else{
+                showAlert('Slope Wallet successfully connected!',true,button1);
+                return true;
+            }
         }catch(e){
             console.log(e);
             showAlert('Failed to connect to Slope Wallet!',false,button1);
@@ -133,27 +165,54 @@ async function connect_wallet(){
 
 async function main(){
 
+    modal_content.style.display = 'none';
+    connect_loading_ind.style.display = 'block';
+
     //checking selected wallet
     const is_installed = check_wallet();
     
     if (!is_installed){
+        modal_content.style.display = 'block';
+        connect_loading_ind.style.display = 'none';
         //return early from the function
         return
     }
 
     //else we connect to the selected wallet
     const connected = await connect_wallet();
+    
     if (!connected){
+        modal_content.style.display = 'block';
+        connect_loading_ind.style.display = 'none';
         //return early from the function
         return
     }else{
         console.log(owner);
+        const display_key = owner.substring(0,6)+'..'+'&#160&#160&#160&#160▾';
+        connect_wallet_button.innerHTML = display_key;
+        modal_content.style.display = 'block';
+        connect_loading_ind.style.display = 'none';
+        modal.style.display = 'none';
+        connect_wallet_button.removeEventListener('click',show_connect_modal);
+        disconnect_wallet_button.style.display = 'block';
     }
-
 }
 
 
+//connect wallet button click
 
+const show_connect_modal = async()=>{
+    modal.style.display = 'flex'; 
+}
+
+connect_wallet_button.addEventListener('click',show_connect_modal)
+
+
+//sidconnect wallet button click
+
+disconnect_wallet_button.addEventListener('click',async ()=>{
+    location.reload();
+})
 
 //adding event listeners to all wallet buttons
 phantom.addEventListener('click', async() => {
@@ -176,9 +235,20 @@ slope.addEventListener('click', async() => {
     await main();  
 });
 
-
+//ME button dropdown
+ME_button.addEventListener('click',(e)=>{
+    if (!me_dropped){
+        ME_menu.classList.add('dropdown-ME-visible')
+        me_dropped = true
+    }else{
+        ME_menu.classList.remove('dropdown-ME-visible')
+        me_dropped = false;
+    }
+})
 
 //return button for connect wallet modal
 return_button.addEventListener('click', function(e) {
     modal.style.display = 'none';
 });
+
+

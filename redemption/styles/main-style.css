@@ -8,7 +8,8 @@ body{
     background-attachment: fixed;
 }
 
-header {
+header{
+
     font-family: 'Bebas Neue', cursive;
     position: fixed;
     top: 0;
@@ -17,6 +18,21 @@ header {
     height: 70px;
     background-color: #22222267;
     border-bottom: 1px solid rgb(108, 122, 179);
+    z-index: 9;
+
+}
+
+header:hover{
+    opacity: 1;
+    height: 70px;
+    border-bottom: 1px solid rgb(108, 122, 179);
+}
+
+.scrolled-to-content{
+    opacity: 0.75;
+    height: 60px;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-out;
+    border-bottom: none;
 }
   
 nav {
@@ -79,7 +95,7 @@ header nav .text:hover{
     transition: transform 0.25s ease-in-out;
 }
 .text:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 .text:hover img{
     filter: drop-shadow(1px 0px 1px rgba(184, 235, 255, 0.993))
@@ -103,5 +119,63 @@ header nav .text:hover{
     width: 24;
     height: 22;
 }
-  
+
+.dropdown-ME{
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    position: fixed;
+    flex-direction: column;
+    background-color: #22222267;
+    border: 1px solid rgb(108, 122, 179);
+    left: 340px;
+    top: 45px;
+    width: 175px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dropdown-ME-visible{
+    visibility: visible;
+    opacity: 1;
+}
+.dropdown-ME a{
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid rgb(108, 122, 179);
+}
+
+.dropdown-ME a div{
+    transition: transform 0.2s ease-in-out;
+}
+
+.dropdown-ME a:hover div{
+    transform: scale(1.05);
+    text-shadow: 1px 0px 1px white;
+}
+
+.ME-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.link-icon{
+    text-shadow: 0px 0px 10px white;
+}
+
+.test{
+    position: relative;
+    width: 300px;
+    height: 500px;
+    border: 1px solid red;
+}
+
+.test-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 3000px;
+    width: 700px;
+}
   
