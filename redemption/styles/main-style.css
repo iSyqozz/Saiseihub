@@ -38,8 +38,8 @@ body{
     padding: 0;
     height: 100%;
     width: 100%;
-    background: rgb(22,74,153);
     background: linear-gradient(0deg, rgba(22,74,153,1) 7%, rgba(84,102,156,1) 52%, rgba(59,59,129,1) 93%); 
+    background: #305973;
     background-attachment: fixed;
     overflow-x: hidden;
     scrollbar-width: thin;
