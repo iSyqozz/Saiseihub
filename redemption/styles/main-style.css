@@ -458,5 +458,6 @@ header nav .text:hover{
     margin-left: 200px;
     border-radius: 50px;
     background: linear-gradient(90deg, #3d33a1, #2c2482);
-    background: #011c26;
+    background:#011c26;
+    background: linear-gradient(90deg , #045159, #087f8c );
 }
