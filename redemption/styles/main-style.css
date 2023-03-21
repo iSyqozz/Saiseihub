@@ -443,7 +443,6 @@ header nav .text:hover{
     position: relative;
     width: 300px;
     height: 500px;
-    border: 30px solid #97DEFF;
 }
 
 .test-container{
@@ -458,4 +457,5 @@ header nav .text:hover{
     margin-top: 100px;
     margin-left: 200px;
     border-radius: 50px;
+    background-color: linear-gradient(90deg, #3d33a1, #2c2482 );
 }
