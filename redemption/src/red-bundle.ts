@@ -24,12 +24,17 @@ const ME_button = document.querySelector('.me-button') as HTMLElement;
 const ME_menu = document.querySelector('.dropdown-ME') as HTMLElement;
 const connect_wallet_button = document.querySelector('.connect-wallet') as HTMLElement;
 const disconnect_wallet_button = document.querySelector('.disconnect-wallet') as HTMLElement;
+const view_up_button = document.querySelector('.up-arrow-container') as HTMLElement;
+const arrow_pic = document.querySelector('.up-arrow1') as HTMLImageElement;
 
 //global state and control variables
 var wallet_type:string = '';
 var owner:string = '';
 var me_dropped:boolean = false;
 var content_intersected:boolean = false;
+var view_button_pop:boolean = false;
+var temp_id:any = null;
+var is_arrow_animating:boolean = false;
 
 
 //scroll top nav dim
@@ -41,6 +46,16 @@ window.addEventListener('scroll',function(){
         nav.classList.toggle('scrolled-to-content');
         content_intersected = false;
     }
+
+    if (window.scrollY >= 650 && !view_button_pop){
+        view_up_button.style.display = 'block';
+        view_button_pop = true;
+    }else if(window.scrollY < 650 && view_button_pop){
+        view_up_button.style.display = 'none';
+        view_button_pop = false;
+    }
+
+
 })
 
 
@@ -235,6 +250,11 @@ slope.addEventListener('click', async() => {
     await main();  
 });
 
+return_button.addEventListener('click', function(e) {
+    modal.style.display = 'none';
+});
+
+
 //ME button dropdown
 ME_button.addEventListener('click',(e)=>{
     if (!me_dropped){
@@ -246,9 +266,41 @@ ME_button.addEventListener('click',(e)=>{
     }
 })
 
-//return button for connect wallet modal
-return_button.addEventListener('click', function(e) {
-    modal.style.display = 'none';
-});
+
+//functionality and fancy effects for scroll up button
+view_up_button.addEventListener('click',()=>{
+    window.scrollTo({top: 0, behavior: 'smooth'});
+})
+
+view_up_button.addEventListener('mouseover',()=>{
+    if (is_arrow_animating){
+        return
+    }
+
+    is_arrow_animating = true;
+    
+    var num = 0
+    temp_id = setInterval(() => {
+        
+        num+=1
+        const duplicate = document.createElement('img') as HTMLImageElement;
+        duplicate.src = arrow_pic.src;
+        duplicate.style.cssText = arrow_pic.style.cssText
+        duplicate.className = arrow_pic.className;
+        arrow_pic.parentNode!.insertBefore(duplicate,arrow_pic.nextSibling);
+        duplicate.classList.add('arrow-float-up');
+        setTimeout(() => {
+            duplicate.remove();
+        }, 500);
+
+        if (num === 3){
+            clearInterval(temp_id);
+            is_arrow_animating = false;
+        }
+    }, 500);
+
+})
+
+
 
 

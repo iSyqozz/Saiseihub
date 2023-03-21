@@ -1,3 +1,8 @@
+:root {
+    --scale-factor: 1.3;
+  }
+  
+
 body{
     margin: 0;
     padding: 0;
@@ -6,6 +11,7 @@ body{
     background: rgb(22,74,153);
     background: linear-gradient(0deg, rgba(22,74,153,1) 7%, rgba(84,102,156,1) 52%, rgba(59,59,129,1) 93%); 
     background-attachment: fixed;
+    overflow-x: hidden;
 }
 
 header{
@@ -163,6 +169,208 @@ header nav .text:hover{
 .link-icon{
     text-shadow: 0px 0px 10px white;
 }
+
+
+
+
+.saisei-text{
+    position: fixed;
+    margin-top: 350px;
+    left: 50%;
+    animation: float2 2s ease-in-out infinite;
+    opacity: 0.05;
+    position: fixed;
+    filter: invert(0);
+    width: 300px;
+}
+
+@media only screen and (min-width:750px){
+    .saisei-text{
+        width: initial;
+    }
+    
+}
+
+
+
+@keyframes float2 {
+    0% {
+      transform: translate(-50%,0);
+    }
+    50% {
+      transform: translate(-50%,-10px);
+    }
+    100% {
+      transform: translate(-50%,0);
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float3 {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+
+
+.clouds{
+    position: fixed;
+}
+  .cloud1{
+    opacity: 0.2;
+    top: 50px;
+    width: 200px;
+    height: 100px;
+
+    left: 70%;
+    animation: float 3.1s ease-in-out infinite;
+
+}
+
+.cloud2{
+    opacity: 0.2;
+    top: 200px;
+    width: 200px;
+    height: 100px;
+    left: 30%;
+    animation: float 3s ease-in-out infinite;
+
+}
+
+.cloud3{
+    opacity: 0.2;
+    top: 100px;
+    width: 150px;
+    height: 75px;
+    left: 1%;
+    animation: float 2s ease-in-out infinite;
+
+}
+
+.cloud4{
+    opacity: 0.2;
+    top: 400px;
+    width: 200px;
+    height: 100px;
+    left: 10%;
+    animation: float 2.8s ease-in-out infinite;
+}
+
+.cloud5{
+    opacity: 0.2;
+    top: 500px;
+    width: 200px;
+    height: 100px;
+    left: 30%;
+    animation: float 2.5s ease-in-out infinite;
+}
+
+.cloud6{
+    opacity: 0.2;
+    top: 700px;
+    width: 250px;
+    height: 125px;
+    left: 50%;
+    animation: float 4s ease-in-out infinite;
+
+}
+
+.cloud7{
+    opacity: 0.2;
+    top: 300px;
+    width: 250px;
+    height: 125px;
+    left: 75%;
+    animation: float 3.2s ease-in-out infinite;
+}
+
+.up-arrow-container{
+    position: fixed;
+    display: none;
+    bottom: 40px;
+    right: 40px;
+    background:linear-gradient(0deg, rgb(115, 158, 223) 7%, rgba(84,102,156,1) 52%, rgba(59,59,129,1) 93%) ;
+    padding: 10px;
+    border-radius: 20rem;
+    animation: float3 2s ease-in-out infinite;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: opacity 0.3s ease-in-out;
+    width: 60px;
+    height: 60px;
+}
+
+.up-arrow-container:hover{
+    opacity: 1;
+}
+
+
+.up-arrow1{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -2px;
+}
+
+.arrow-float-up{
+    animation: vanish 0.5s ease-in-out forwards;
+    margin-top: -2px;
+}
+
+@keyframes vanish {
+    0% {
+        opacity: 1;
+        margin-top: -2;
+    }
+    100% {
+        opacity: 0;
+        margin-top: -30;
+    }
+  }
+
+.up-arrow2{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+}
+
+.up-arrow3{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 22px;
+
+}
+
+
 
 .test{
     position: relative;

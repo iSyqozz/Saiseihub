@@ -25,11 +25,16 @@ const ME_button = document.querySelector('.me-button');
 const ME_menu = document.querySelector('.dropdown-ME');
 const connect_wallet_button = document.querySelector('.connect-wallet');
 const disconnect_wallet_button = document.querySelector('.disconnect-wallet');
+const view_up_button = document.querySelector('.up-arrow-container');
+const arrow_pic = document.querySelector('.up-arrow1');
 //global state and control variables
 var wallet_type = '';
 var owner = '';
 var me_dropped = false;
 var content_intersected = false;
+var view_button_pop = false;
+var temp_id = null;
+var is_arrow_animating = false;
 //scroll top nav dim
 window.addEventListener('scroll', function () {
     if (window.scrollY >= 100 && !content_intersected) {
@@ -39,6 +44,14 @@ window.addEventListener('scroll', function () {
     else if (window.scrollY < 100 && content_intersected) {
         nav.classList.toggle('scrolled-to-content');
         content_intersected = false;
+    }
+    if (window.scrollY >= 650 && !view_button_pop) {
+        view_up_button.style.display = 'block';
+        view_button_pop = true;
+    }
+    else if (window.scrollY < 650 && view_button_pop) {
+        view_up_button.style.display = 'none';
+        view_button_pop = false;
     }
 });
 //checking if requested type is installed or not
@@ -217,6 +230,9 @@ slope.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function
     wallet_type = 'slope';
     yield main();
 }));
+return_button.addEventListener('click', function (e) {
+    modal.style.display = 'none';
+});
 //ME button dropdown
 ME_button.addEventListener('click', (e) => {
     if (!me_dropped) {
@@ -228,9 +244,32 @@ ME_button.addEventListener('click', (e) => {
         me_dropped = false;
     }
 });
-//return button for connect wallet modal
-return_button.addEventListener('click', function (e) {
-    modal.style.display = 'none';
+view_up_button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+view_up_button.addEventListener('mouseover', () => {
+    console.log(is_arrow_animating);
+    if (is_arrow_animating) {
+        return;
+    }
+    is_arrow_animating = true;
+    var num = 0;
+    temp_id = setInterval(() => {
+        num += 1;
+        const duplicate = document.createElement('img');
+        duplicate.src = arrow_pic.src;
+        duplicate.style.cssText = arrow_pic.style.cssText;
+        duplicate.className = arrow_pic.className;
+        arrow_pic.parentNode.insertBefore(duplicate, arrow_pic.nextSibling);
+        duplicate.classList.add('arrow-float-up');
+        setTimeout(() => {
+            duplicate.remove();
+        }, 500);
+        if (num === 3) {
+            clearInterval(temp_id);
+            is_arrow_animating = false;
+        }
+    }, 500);
 });
 
 },{"./snackbar":2}],2:[function(require,module,exports){
