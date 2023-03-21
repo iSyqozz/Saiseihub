@@ -42,7 +42,6 @@
     color: #fff;
     margin-bottom: 20px;
     text-align: center;
-    font-family: 'Bebas Neue', cursive;
   }
   
   .modal1-content {
@@ -61,7 +60,7 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 1000;
     color: #fff;
     background: linear-gradient(90deg, rgb(22, 25, 36) 2%, #4e4e50 50%, rgb(22, 25, 36) 98%);
     cursor: pointer;

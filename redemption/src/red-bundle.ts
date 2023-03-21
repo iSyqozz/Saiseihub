@@ -26,6 +26,7 @@ const connect_wallet_button = document.querySelector('.connect-wallet') as HTMLE
 const disconnect_wallet_button = document.querySelector('.disconnect-wallet') as HTMLElement;
 const view_up_button = document.querySelector('.up-arrow-container') as HTMLElement;
 const arrow_pic = document.querySelector('.up-arrow1') as HTMLImageElement;
+const clouds = document.querySelectorAll('.clouds');
 
 //global state and control variables
 var wallet_type:string = '';
@@ -35,9 +36,33 @@ var content_intersected:boolean = false;
 var view_button_pop:boolean = false;
 var temp_id:any = null;
 var is_arrow_animating:boolean = false;
+var scrollTimeout: any;
+var prevScrollPos = window.scrollY;
 
 
-//scroll top nav dim
+
+//sleep function
+function sleep(ms:number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
+
+ 
+ //adding global click event listeners for UX and click logic
+ document.addEventListener('click', (event:MouseEvent) => {
+    // check if the target element of the event is inside the dropdown menu or not
+    const isClickedInsideDropdownMenu = ME_menu.contains(event.target as Node);
+    const isClickedInsidebutton = ME_button.contains(event.target as Node);
+    const temp = ME_menu.classList.value;
+
+    // if the click is outside of the dropdown menu, hide it
+    if (!isClickedInsideDropdownMenu && me_dropped && !isClickedInsidebutton ) {
+        console.log('inside')
+        ME_menu.classList.remove('dropdown-ME-visible');
+        me_dropped = false
+    }
+  })
+
+//scroll top nav dim and clouds animation
 window.addEventListener('scroll',function(){
     if (window.scrollY >= 100 && !content_intersected){
         nav.classList.toggle('scrolled-to-content');
@@ -55,6 +80,36 @@ window.addEventListener('scroll',function(){
         view_button_pop = false;
     }
 
+    
+    //we animate the clouds only if the user scrolls down 
+    const currentScrollPos = window.scrollY;
+    console.log(currentScrollPos,prevScrollPos);
+    if(currentScrollPos > prevScrollPos){
+        for(var i = 0 ; i< clouds.length; i++){
+            const cloud = clouds[i] as HTMLElement;
+
+            cloud.classList.add('clouds-freefall');
+        }
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            for(var i = 0 ; i< clouds.length; i++){
+                const cloud = clouds[i] as HTMLElement;
+                cloud.classList.add("clouds-not-freefall");
+                cloud.classList.remove("clouds-freefall");
+                //cloud.classList.remove("clouds-not-freefall");
+            }
+
+            setTimeout(() => {
+                for(var i = 0 ; i< clouds.length; i++){
+                    const cloud = clouds[i] as HTMLElement;
+                    cloud.classList.remove("clouds-not-freefall");
+                }
+            }, 500);
+        }, 300);
+    
+    }
+    prevScrollPos = window.scrollY;
 
 })
 
@@ -257,13 +312,15 @@ return_button.addEventListener('click', function(e) {
 
 //ME button dropdown
 ME_button.addEventListener('click',(e)=>{
-    if (!me_dropped){
-        ME_menu.classList.add('dropdown-ME-visible')
-        me_dropped = true
-    }else{
-        ME_menu.classList.remove('dropdown-ME-visible')
-        me_dropped = false;
-    }
+    setTimeout(() => {
+        if (!me_dropped){
+            ME_menu.classList.add('dropdown-ME-visible')
+            me_dropped = true
+        }else{
+            ME_menu.classList.remove('dropdown-ME-visible')
+            me_dropped = false;
+        }
+    }, 100);
 })
 
 
