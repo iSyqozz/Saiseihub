@@ -443,7 +443,7 @@ header nav .text:hover{
     position: relative;
     width: 300px;
     height: 500px;
-    border: 10px solid #025e73;
+    border: 10px solid #011c26;
 }
 
 .test-container{
@@ -456,5 +456,5 @@ header nav .text:hover{
 
 #test1{
     margin-top: 100px;
-    background: #025e73;
+    background: #011c26;
 }
