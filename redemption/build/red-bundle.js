@@ -21,7 +21,8 @@ const modal = document.querySelector('.modal1');
 const modal_content = document.querySelector('.modal1-box');
 const connect_loading_ind = document.querySelector('.loader--style8');
 const button1 = document.querySelector('.button1');
-const ME_button = document.querySelector('.me-button');
+const ME_button = document.querySelectorAll('.me-button')[0];
+const ME_button2 = document.querySelectorAll('.me-button')[1];
 const ME_menu = document.querySelector('.dropdown-ME');
 //side menu elements
 const side_menu_button = document.querySelector('.menu-button');
@@ -53,7 +54,7 @@ function sleep(ms) {
 document.addEventListener('click', (event) => {
     // check if the target element of the event is inside the dropdown menu or not
     const isClickedInsideDropdownMenu = ME_menu.contains(event.target);
-    const isClickedInsidebutton = ME_button.contains(event.target);
+    const isClickedInsidebutton = ME_button.contains(event.target) || ME_button2.contains(event.target);
     const temp = ME_menu.classList.value;
     // if the click is outside of the dropdown menu, hide it
     if (!isClickedInsideDropdownMenu && me_dropped && !isClickedInsidebutton) {
@@ -287,6 +288,18 @@ return_button.addEventListener('click', function (e) {
 });
 //ME button dropdown
 ME_button.addEventListener('click', (e) => {
+    setTimeout(() => {
+        if (!me_dropped) {
+            ME_menu.classList.add('dropdown-ME-visible');
+            me_dropped = true;
+        }
+        else {
+            ME_menu.classList.remove('dropdown-ME-visible');
+            me_dropped = false;
+        }
+    }, 100);
+});
+ME_button2.addEventListener('click', (e) => {
     setTimeout(() => {
         if (!me_dropped) {
             ME_menu.classList.add('dropdown-ME-visible');

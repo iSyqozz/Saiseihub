@@ -20,7 +20,8 @@ const modal = document.querySelector('.modal1')as HTMLElement;
 const modal_content = document.querySelector('.modal1-box')as HTMLElement;
 const connect_loading_ind = document.querySelector('.loader--style8')as HTMLElement;
 const button1 = document.querySelector('.button1') as HTMLButtonElement;
-const ME_button = document.querySelector('.me-button') as HTMLElement;
+const ME_button = document.querySelectorAll('.me-button')[0] as HTMLElement;
+const ME_button2 = document.querySelectorAll('.me-button')[1] as HTMLElement;
 const ME_menu = document.querySelector('.dropdown-ME') as HTMLElement;
 
 //side menu elements
@@ -60,7 +61,7 @@ function sleep(ms:number) {
  document.addEventListener('click', (event:MouseEvent) => {
     // check if the target element of the event is inside the dropdown menu or not
     const isClickedInsideDropdownMenu = ME_menu.contains(event.target as Node);
-    const isClickedInsidebutton = ME_button.contains(event.target as Node);
+    const isClickedInsidebutton = ME_button.contains(event.target as Node) || ME_button2.contains(event.target as Node);
     const temp = ME_menu.classList.value;
 
     // if the click is outside of the dropdown menu, hide it
@@ -321,6 +322,18 @@ return_button.addEventListener('click', function(e) {
 
 //ME button dropdown
 ME_button.addEventListener('click',(e)=>{
+    setTimeout(() => {
+        if (!me_dropped){
+            ME_menu.classList.add('dropdown-ME-visible')
+            me_dropped = true
+        }else{
+            ME_menu.classList.remove('dropdown-ME-visible')
+            me_dropped = false;
+        }
+    }, 100);
+})
+
+ME_button2.addEventListener('click',(e)=>{
     setTimeout(() => {
         if (!me_dropped){
             ME_menu.classList.add('dropdown-ME-visible')
