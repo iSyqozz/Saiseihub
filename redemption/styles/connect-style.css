@@ -102,7 +102,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
 .connect-wallet{
     letter-spacing: 1px;
@@ -145,4 +144,30 @@
 
 .disconnect-wallet:hover{
   background: linear-gradient(90deg, #975e5e 0%, #834242 80%)
+}
+
+@media only screen and (max-width:750px){
+
+  .connect-wallet{
+    margin-top: 5px;
+    font-size: 13px;
+    width: 100px;
+    height: 33px;
+  }
+
+  .disconnect-wallet{
+    margin-top: 5px;
+    font-size: 13px;
+    width: 33px;
+    height: 33px;
+  }
+
+  .disconnect{
+    width: 18px;
+    height: 18px;
+  }
+
+  .wallet-box{
+    margin-right: -15px;
+  }
 }

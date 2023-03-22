@@ -39,7 +39,6 @@ body{
     height: 100%;
     width: 100%;
     background: linear-gradient(0deg, rgba(22,74,153,1) 7%, rgba(84,102,156,1) 52%, rgba(59,59,129,1) 93%); 
-    background: #305973;
     background-attachment: fixed;
     overflow-x: hidden;
     scrollbar-width: thin;
@@ -93,9 +92,15 @@ nav {
   width: 50px;
   height: 50px;
   transition: transform 0.25s ease-in-out;
+  filter: invert(0.8);
 }
+
 .logo:hover img{
     transform: scale(1.1);
+}
+
+.menu-button{
+    display: none;
 }
 
 
@@ -214,13 +219,6 @@ header nav .text:hover{
     position: fixed;
     filter: invert(0);
     width: 300px;
-}
-
-@media only screen and (min-width:750px){
-    .saisei-text{
-        width: initial;
-    }
-    
 }
 
 
@@ -437,27 +435,79 @@ header nav .text:hover{
 
 }
 
+.side-menu{
+    z-index: 9999;
+    width: 0px;
+    position: fixed;
+    height: 100%;
+    background-color: #22222267;
+    transition: width 0.5s ease-in-out;
+    margin-top: 70px ;
 
+}
 
-.test{
+.side-menu-appear{
+    width: 150px;
+}
+
+.text-side{
+    font-family: 'Bebas Neue', cursive;
+    display: none;
+    opacity: 0;
     position: relative;
-    width: 300px;
-    height: 500px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 20px ;
+    transition: opacity 0.5s ease-in-out;
+    background-color: rgba(84, 102, 156, 0.575);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    width: 120px;
+    border-radius: 3rem;
+    margin-left: 18px;
 }
 
-.test-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 3000px;
-    width: 700px;
+.text-side:hover{
+
 }
 
-#test1{
-    margin-top: 100px;
-    margin-left: 200px;
-    border-radius: 50px;
-    background: linear-gradient(90deg, #3d33a1, #2c2482);
-    background:#011c26;
-    background: linear-gradient(180deg , #123859, #11707a );
+.text-side-appear{
+    display: block;
+    opacity: 1;
+}
+
+
+
+@media only screen and (min-width:750px){
+    .saisei-text{
+        width: initial;
+    }
+    .side-menu{
+        display: none;
+    }
+    
+}
+
+@media only screen and (max-width:750px){
+    .text{
+        display: none;
+    }
+
+    .text-side{
+        display: block;
+    }
+
+    .logo img{
+        margin-left: -13px;
+    }
+
+    .menu-button{
+        display: block;
+    }
+    .nav-left{
+        margin-left: -22px;
+    }
 }

@@ -22,6 +22,12 @@ const connect_loading_ind = document.querySelector('.loader--style8')as HTMLElem
 const button1 = document.querySelector('.button1') as HTMLButtonElement;
 const ME_button = document.querySelector('.me-button') as HTMLElement;
 const ME_menu = document.querySelector('.dropdown-ME') as HTMLElement;
+
+//side menu elements
+const side_menu_button = document.querySelector('.menu-button') as HTMLElement;
+const side_menu = document.querySelector('.side-menu') as HTMLElement;
+const side_text = document.querySelectorAll('.text-side'); 
+
 const connect_wallet_button = document.querySelector('.connect-wallet') as HTMLElement;
 const disconnect_wallet_button = document.querySelector('.disconnect-wallet') as HTMLElement;
 const view_up_button = document.querySelector('.up-arrow-container') as HTMLElement;
@@ -38,6 +44,9 @@ var temp_id:any = null;
 var is_arrow_animating:boolean = false;
 var scrollTimeout: any;
 var prevScrollPos = window.scrollY;
+var side_menu_appeared:boolean = false;
+var menu_appear_id:any
+var menu_disappear_id:any
 
 
 
@@ -322,6 +331,41 @@ ME_button.addEventListener('click',(e)=>{
         }
     }, 100);
 })
+
+//side menu button function and logic
+
+const side_menu_event = ()=>{
+    
+    if(!side_menu_appeared){
+        side_menu_appeared = true
+        side_menu.classList.add('side-menu-appear');
+
+        side_menu_button.removeEventListener('click',side_menu_event);
+        setTimeout(async () => {
+            for (var i = 0; i< side_text.length; i++){
+                await sleep(100)
+                const text = side_text[i] as HTMLElement;
+                text.classList.add('text-side-appear')
+            }
+            side_menu_button.addEventListener('click',side_menu_event);
+        }, 300);
+    }else{
+        side_menu_appeared = false
+        side_menu_button.removeEventListener('click',side_menu_event);
+
+        for (var i = 0; i< side_text.length; i++){
+            const text = side_text[i] as HTMLElement;
+            text.classList.remove('text-side-appear')
+        }
+        setTimeout(() => {
+        side_menu.classList.remove('side-menu-appear');
+        side_menu_button.addEventListener('click',side_menu_event);
+    }, 300);
+    }
+}
+
+side_menu_button.addEventListener('click', side_menu_event);
+
 
 
 //functionality and fancy effects for scroll up button

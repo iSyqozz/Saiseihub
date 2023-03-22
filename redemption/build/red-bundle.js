@@ -23,6 +23,10 @@ const connect_loading_ind = document.querySelector('.loader--style8');
 const button1 = document.querySelector('.button1');
 const ME_button = document.querySelector('.me-button');
 const ME_menu = document.querySelector('.dropdown-ME');
+//side menu elements
+const side_menu_button = document.querySelector('.menu-button');
+const side_menu = document.querySelector('.side-menu');
+const side_text = document.querySelectorAll('.text-side');
 const connect_wallet_button = document.querySelector('.connect-wallet');
 const disconnect_wallet_button = document.querySelector('.disconnect-wallet');
 const view_up_button = document.querySelector('.up-arrow-container');
@@ -38,6 +42,9 @@ var temp_id = null;
 var is_arrow_animating = false;
 var scrollTimeout;
 var prevScrollPos = window.scrollY;
+var side_menu_appeared = false;
+var menu_appear_id;
+var menu_disappear_id;
 //sleep function
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -291,6 +298,35 @@ ME_button.addEventListener('click', (e) => {
         }
     }, 100);
 });
+//side menu button function and logic
+const side_menu_event = () => {
+    if (!side_menu_appeared) {
+        side_menu_appeared = true;
+        side_menu.classList.add('side-menu-appear');
+        side_menu_button.removeEventListener('click', side_menu_event);
+        setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+            for (var i = 0; i < side_text.length; i++) {
+                yield sleep(100);
+                const text = side_text[i];
+                text.classList.add('text-side-appear');
+            }
+            side_menu_button.addEventListener('click', side_menu_event);
+        }), 300);
+    }
+    else {
+        side_menu_appeared = false;
+        side_menu_button.removeEventListener('click', side_menu_event);
+        for (var i = 0; i < side_text.length; i++) {
+            const text = side_text[i];
+            text.classList.remove('text-side-appear');
+        }
+        setTimeout(() => {
+            side_menu.classList.remove('side-menu-appear');
+            side_menu_button.addEventListener('click', side_menu_event);
+        }, 300);
+    }
+};
+side_menu_button.addEventListener('click', side_menu_event);
 //functionality and fancy effects for scroll up button
 view_up_button.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
