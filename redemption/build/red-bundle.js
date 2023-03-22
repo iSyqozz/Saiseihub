@@ -253,7 +253,7 @@ function main() {
             connect_loading_ind.style.display = 'none';
             modal.style.display = 'none';
             connect_wallet_button.removeEventListener('click', show_connect_modal);
-            disconnect_wallet_button.style.display = 'block';
+            disconnect_wallet_button.style.display = 'flex';
         }
     });
 }

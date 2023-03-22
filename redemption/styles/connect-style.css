@@ -68,9 +68,10 @@
   }
 
 .wallet-btn div{
+    margin-left: 3px;
     letter-spacing: 0px;
     float: right;
-    width: 100px;
+    width: 110px;
     text-align: left;
 }
 
@@ -125,10 +126,10 @@
 }
 
 .disconnect{
+  position: relative;
   width: 25px;
   height: 25px;
   filter: invert(1);
-
 }
 .disconnect-wallet{
   display: none;
@@ -140,6 +141,9 @@
   background: #792222;
   border: none;
   border-radius: 24px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .disconnect-wallet:hover{
@@ -150,7 +154,7 @@
 
   .connect-wallet{
     margin-top: 5px;
-    font-size: 13px;
+    font-size: 11px;
     width: 100px;
     height: 33px;
   }
