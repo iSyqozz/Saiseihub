@@ -29,7 +29,6 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    border: 2px solid red;
 }
 
 .pool{
@@ -38,10 +37,11 @@
     justify-content: start;
     align-items: center;
     aspect-ratio: 9/16;
-    border-radius: 4rem;
+    border-radius: 2rem;
 }
 
-.pool img{
+.pool .logo-container img{
+    position: absolute;
     opacity: 0.8;
     width: 60px;
     height: 60px;
@@ -50,9 +50,24 @@
     transition: transform 0.3s ease-in-out , opacity 0.3s ease-in-out ;
 }
 
-.pool:hover img{
+.pool .logo-container .qm-grey{
+    opacity: 0;
+    cursor: pointer;
+}
+
+.pool .logo-container{
+    width: 25%;
+    height: fit-content;
+}
+
+.pool:hover .logo-container .pool-logo{
     transform: scale(1.1);
     opacity: 1;
+}
+
+
+.logo-container:hover .qm-grey{
+    opacity: 0.6;
 }
 
 .pool:hover{
@@ -148,6 +163,50 @@
     color: rgb(28, 240, 187);
 }
 
+.info-sum{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;;
+    border-radius: 1rem;
+    width: 80%;
+    height: 62%;
+    background-color: #22222267;
+    margin-top: 42%;
+}
+
+.info-top{
+    background-color: #222222c5;
+    width: 80%;
+    height: 20%;
+    border-radius: 1rem;
+}
+
+.info-mid{
+    background-color: #22222294;
+    width: 80%;
+    height: 50%;
+    border-radius: 1rem;
+}
+
+.pool-button{
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 1rem;
+}
+
+.pool-button-inactive{
+    box-shadow: 0px 0px 0px rgb(204, 20, 20);
+    opacity: 0.6;
+    cursor: not-allowed !important;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.pool-button-inactive:hover{
+    box-shadow: 0px 0px 5px rgb(204, 20, 20);
+}
+
 
 
 
@@ -219,7 +278,7 @@
         margin-bottom: 300px;
     }
 
-    .pool img{
+    .pool .logo-container img{
         width: 70px;
         height: 70px;
     }
@@ -240,7 +299,7 @@
         width: 300px;
     }
 
-    .pool img{
+    .pool .logo-container img{
         width: 75px;
         height: 75px;
     }
@@ -259,7 +318,7 @@
         width: 350px;
     }
 
-    .pool img{
+    .pool .logo-container img{
         width: 100px;
         height: 100px;
     }
@@ -280,7 +339,7 @@
         margin-bottom: 150px;
     }
 
-    .pool img{
+    .pool .logo-container img{
         width: 120px;
         height: 120px;
     }
