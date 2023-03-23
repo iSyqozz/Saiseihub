@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redemption</title>
     <link rel="stylesheet/less" type="text/css" href="redemption/styles/snack.less">
-    <link rel="stylesheet" type="text/css" href="redemption/styles/connect-style.css">
     <link rel="stylesheet" type="text/css" href="redemption/styles/main-style.css">
+    <link rel="stylesheet" type="text/css" href="redemption/styles/connect-style.css">
     <link rel="stylesheet" type="text/css" href="redemption/styles/loader.css">
+    <link rel="stylesheet" type="text/css" href="redemption/styles/red-style.css">    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -15,8 +16,12 @@
 </head>
 
 <body>
+
+  <!--Header-->
   <header>
     <nav>
+      
+      <!--Nav bar left logos and project links-->
       <div class="nav-left nav-right">
         <a class="logo"href="https://saisei.io"><img src="redemption/assets/BlackBlueSaiSei.png" alt=""></a>
         <a class="logo menu-button"href="#"><img src="redemption/assets/menu-symbol.svg" alt=""></a>
@@ -24,44 +29,52 @@
         <a class="text" target="_blank" href="https://twitter.com/Suteki_NFT"><img id="twitter-logo" src="redemption/assets/twitter.svg" alt="">Twitter</a>
         <a class="text me-button" href="#"><img id="ME-logo" src="redemption/assets/ME.png" alt=""> Buy Now</a>
       </div>
-      <div class="wallet-box">
+
+    <!--wallet box and address box-->
+    <div class="wallet-box">
         <button class="disconnect-wallet"><img class="disconnect" src="redemption/assets/shut-down.svg" alt=""></button>
         <button class="connect-wallet">Connect wallet</button>
       </div>
     </nav>
 
+    
+    <!--Buy now dropdown menu-->
     <div class="dropdown-ME">
-      <a class="ME-links" href="#"><div>Saisei (Soon!)</div><div class="link-icon">🔗</div></a>
+      <a class="ME-links"><div>Saisei (Soon!)</div><div class="link-icon">🔗</div></a>
       <a class="ME-links" target="_blank" href="https://magiceden.io/marketplace/suteki"><div>Suteki</div><div class="link-icon">🔗</div></a>
       <a class="ME-links" target="_blank" href="https://magiceden.io/marketplace/blacksmiths_armory"><div>Blacksmith's Armory</div><div class="link-icon">🔗</div></a>
       <a class="ME-links" target="_blank" href="https://magiceden.io/marketplace/the_emergence_scrolls"><div>The Emergence Scrolls</div><div class="link-icon">🔗</div></a>
     </div>
   </header>
 
-  <div class="side-menu">
-    <a class="text text-side" target="_blank" href="https://discord.gg/VNThGUTWzG">•Discord</a>
-    <a class="text text-side" target="_blank" href="https://twitter.com/Suteki_NFT">•Twitter</a>
-    <a class="text text-side me-button" href="#">•Buy Now</a>
-  </div>
+  
+<!--Side Menu-->
+<div class="side-menu">
+  <a class="text text-side" target="_blank" href="https://discord.gg/VNThGUTWzG">•Discord</a>
+  <a class="text text-side" target="_blank" href="https://twitter.com/Suteki_NFT">•Twitter</a>
+  <a class="text text-side me-button">•Buy Now</a>
+</div>
   
 
-  <div class="modal1">
-    <div class="modal1-box">
-      <div class="modal1-content">
-          <h2 class="modal1-title">Choose a wallet</h2>
-            <button class="wallet-btn" id="Phantom"> <img src="redemption/assets/phantom.svg" alt=""><div>Phantom Wallet</div> </button>
-            <button class="wallet-btn" id="Solflare"><img src="redemption/assets/solflare.svg" alt=""><div>Solflare Wallet</div></button>
-            <button class="wallet-btn" id="Brave"><img src="redemption/assets/Brave.svg" alt=""><div>Brave Wallet</div></button>
-            <button class="wallet-btn" id="Slope"><img src="redemption/assets/slope.svg" alt=""><div>Slope Wallet</div></button>
-            <button class="wallet-btn" id="quit"><span>Return</span></button>
-        </div>
-    </div>
+  
+<!--Connect Button Modal-->
+<div class="modal1">
+  <div class="modal1-box">
+    <div class="modal1-content">
+        <h2 class="modal1-title">Choose a wallet</h2>
+          <button class="wallet-btn" id="Phantom"> <img src="redemption/assets/phantom.svg" alt=""><div>Phantom Wallet</div> </button>
+          <button class="wallet-btn" id="Solflare"><img src="redemption/assets/solflare.svg" alt=""><div>Solflare Wallet</div></button>
+          <button class="wallet-btn" id="Brave"><img src="redemption/assets/Brave.svg" alt=""><div>Brave Wallet</div></button>
+          <button class="wallet-btn" id="Slope"><img src="redemption/assets/slope.svg" alt=""><div>Slope Wallet</div></button>
+          <button class="wallet-btn" id="quit"><span>Return</span></button>
+      </div>
   </div>
+</div>
 
 
 
 
-  <!-- 8 -->
+<!--Loader-->
 <div class="loader loader--style8" title="7" style="width:fit-content;height: fit-content;">
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -85,6 +98,7 @@
 
 
 
+<!--button for snackbar functionality?-->
 <button
     class="button1"
   type='button'
@@ -96,6 +110,7 @@
 </button>
 
 
+<!--Background assets-->
 <img class="saisei-text" src="redemption/assets/Saisei-text.png" alt="">
 <img class="clouds cloud1" src="redemption/assets/cloud_1.png" alt="">
 <img class="clouds cloud2" src="redemption/assets/cloud_1.png" alt="">
@@ -110,11 +125,56 @@
   <img class="up-arrow3" src="redemption/assets/up-arrow.svg" alt="">
 </div>
 
+<!--sized box for layout-->
+<div class="sized-box-top"></div>
+
+
+
+<!--Redemption pools-->
+
+<div class="pools-container">
+  
+  <!--Sol Pool-->
+  <div class="pool" id="sol-pool">
+    <div class="status-container">
+      <div class="status"><span>Pool inactive</span></div>
+      <div class="green-dot dot"></div>
+    </div>
+    <img src="redemption/assets/Solana-Logo.png" alt="">
+  </div>
+  
+  
+  <!--Usdc Pool-->
+  <div class="pool" id="usdc-pool">
+    
+    <div class="status-container">
+      <div class="status"><span>Pool Active</span></div>
+      <div class="red-dot dot"></div>
+    </div>
+    
+    <img src="redemption/assets/usd-coin-usdc-logo.svg" alt="">
+  
+  </div>
+  
+  <!--Bonk Pool-->
+  <div class="pool" id="bonk-pool">
+
+    <div class="status-container">
+      <div class="status"><span>Pool Active</span></div>
+      <div class="red-dot dot"></div>
+    </div>
+
+    <img src="redemption/assets/bonk-logo.png" alt="">
+  
+  </div>
+</div>
+
 
 
 
   
 
+<script type="module" src="redemption/build/main-bundle.js" ></script>
 <script type="module" src="redemption/build/red-bundle.js" ></script>
     
     

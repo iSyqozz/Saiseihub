@@ -163,6 +163,10 @@ header nav .text:hover{
     height: 22;
 }
 
+.text-side.me-button{
+    cursor: pointer;
+}
+
 .dropdown-ME{
     opacity: 0;
     visibility: hidden;
@@ -212,7 +216,7 @@ header nav .text:hover{
 
 .saisei-text{
     position: fixed;
-    margin-top: 350px;
+    top: 45%;
     left: 50%;
     animation: float2 2s ease-in-out infinite;
     opacity: 0.05;
@@ -381,6 +385,7 @@ header nav .text:hover{
     transition: opacity 0.3s ease-in-out;
     width: 60px;
     height: 60px;
+    z-index: 2;
 }
 
 .up-arrow-container:hover{
@@ -441,8 +446,8 @@ header nav .text:hover{
     position: fixed;
     height: 100%;
     background-color: #22222267;
-    transition: width 0.5s ease-in-out;
-    margin-top: 70px ;
+    transition: width 0.5s ease-in-out , margin-top 0.2s ease-in-out;
+    margin-top: 60px ;
 
 }
 
@@ -468,10 +473,6 @@ header nav .text:hover{
     width: 120px;
     border-radius: 3rem;
     margin-left: 18px;
-}
-
-.text-side:hover{
-
 }
 
 .text-side-appear{
