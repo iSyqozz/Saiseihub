@@ -164,6 +164,7 @@
 }
 
 .info-sum{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -221,17 +222,7 @@
         margin-top: 30px;
     }
 
-    #usdc-pool img{
-        width: 100px;
-        height: 100px;
-    }
-
-    #sol-pool img{
-        width: 100px;
-        height: 100px;
-    }
-
-    #bonk-pool img{
+    .pool .logo-container img{
         width: 100px;
         height: 100px;
     }
@@ -248,19 +239,9 @@
         margin-top: 30px;
     }
 
-    #usdc-pool img{
-        width: 100px;
-        height: 100px;
-    }
-
-    #sol-pool img{
-        width: 100px;
-        height: 100px;
-    }
-
-    #bonk-pool img{
-        width: 100px;
-        height: 100px;
+    .pool .logo-container img{
+        width: 80px;
+        height: 80px;
     }
 
     .status-container{
