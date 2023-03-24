@@ -1,4 +1,5 @@
 import { showAlert } from "./snackbar";
+import {wallet_type,owner} from "./main-bundle"
 
 const pools = document.querySelectorAll('.pool');     
 const sol_pool = document.querySelector('.sol-pool') as HTMLElement;     
@@ -45,6 +46,7 @@ function sleep(ms:number) {
             child.remove();
         }
     }, 1000);
+
 }, 3000); 
 
 //adding event listeners for inactive pool_buttons
@@ -53,12 +55,37 @@ const blocked_click = () => {
     showAlert('Wallet not connected',false,button1);
 }
 
-console.log(pool_buttons);
+
 for (var i=0 ; i < pool_buttons.length ; i++){
     const pool_button = pool_buttons[i];
  
     pool_button.addEventListener('click',blocked_click);
 }
+
+//intersection observer for faq buttons
+
+interface IntersectionObserverEntry {
+    intersectionRatio: number;
+    isIntersecting: boolean;
+    target: Element;
+  }
+  
+const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('faq-visible');
+      // you can also perform other actions on the target element here
+    } else {
+      entry.target.classList.remove('faq-visible');
+    }
+  });
+  });
+  
+  const elements = document.querySelectorAll('.faq');
+  
+  elements.forEach((element: Element) => {
+    observer.observe(element);
+  });
 
 
 

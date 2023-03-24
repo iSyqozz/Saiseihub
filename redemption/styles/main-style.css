@@ -507,6 +507,7 @@ header nav .text:hover{
 
     .menu-button{
         display: block;
+        cursor: pointer;
     }
     .nav-left{
         margin-left: -22px;

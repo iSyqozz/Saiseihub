@@ -37,18 +37,18 @@ const arrow_pic = document.querySelector('.up-arrow1') as HTMLImageElement;
 const clouds = document.querySelectorAll('.clouds');
 
 //global state and control variables
-var wallet_type:string = '';
-var owner:string = '';
-var me_dropped:boolean = false;
-var content_intersected:boolean = false;
-var view_button_pop:boolean = false;
-var temp_id:any = null;
-var is_arrow_animating:boolean = false;
-var scrollTimeout: any;
-var prevScrollPos = window.scrollY;
-var side_menu_appeared:boolean = false;
-var menu_appear_id:any
-var menu_disappear_id:any
+export var wallet_type:string = '';
+export var owner:string = '';
+export var me_dropped:boolean = false;
+export var content_intersected:boolean = false;
+export var view_button_pop:boolean = false;
+export var temp_id:any = null;
+export var is_arrow_animating:boolean = false;
+export var scrollTimeout: any;
+export var prevScrollPos = window.scrollY;
+export var side_menu_appeared:boolean = false;
+export var menu_appear_id:any
+export var menu_disappear_id:any
 
 
 
