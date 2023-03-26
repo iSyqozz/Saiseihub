@@ -35,11 +35,15 @@ const disconnect_wallet_button = document.querySelector('.disconnect-wallet') as
 const view_up_button = document.querySelector('.up-arrow-container') as HTMLElement;
 const arrow_pic = document.querySelector('.up-arrow1') as HTMLImageElement;
 const clouds = document.querySelectorAll('.clouds');
+const wallet_info_box = document.querySelector('.dropdown-wallet-info') as HTMLElement
+const wallet_info_balance_sol = document.querySelector('.wallet-info-balance-sol') as HTMLElement;
+const wallet_info_balance_token = document.querySelector('.wallet-info-balance-token') as HTMLElement;
 
 //global state and control variables
 export var wallet_type:string = '';
 export var owner:string = '';
 export var me_dropped:boolean = false;
+export var wallet_info_dropped:boolean = false;
 export var content_intersected:boolean = false;
 export var view_button_pop:boolean = false;
 export var temp_id:any = null;
@@ -49,6 +53,7 @@ export var prevScrollPos = window.scrollY;
 export var side_menu_appeared:boolean = false;
 export var menu_appear_id:any
 export var menu_disappear_id:any
+export var wallet_info_viewed:boolean = false;
 
 
 
@@ -56,6 +61,34 @@ export var menu_disappear_id:any
 function sleep(ms:number) {
     return new Promise(resolve => setTimeout(resolve, ms));
  }
+
+ 
+ //getting connected wallet sol and sushi balance
+
+ async function get_sol_balance(){
+
+    var res:number = 0;
+    await fetch('https://saisei-server.com/get_balance', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify({
+        address: owner,
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        res = data;
+        //console.log(data);
+      })
+      .catch(error => {
+        res = 0;
+      })
+      return res
+    }; 
+
 
  
  //syncing header and side menu
@@ -79,6 +112,17 @@ function sleep(ms:number) {
     const isClickedInsidebutton = ME_button.contains(event.target as Node) || ME_button2.contains(event.target as Node);
     const temp = ME_menu.classList.value;
 
+    const isClickedinsidewalletinfo = wallet_info_box.contains(event.target as Node);
+    const isClickedinsidewalletinfobutton = connect_wallet_button.contains(event.target as Node);
+    
+
+    // if the click is outside of the wallet-info-box, hide it
+    if (!isClickedinsidewalletinfo && wallet_info_dropped && !isClickedinsidewalletinfobutton){
+        wallet_info_box.classList.remove('dropdown-wallet-info-visible');
+        wallet_info_dropped = false;
+    }
+    
+    
     // if the click is outside of the dropdown menu, hide it
     if (!isClickedInsideDropdownMenu && me_dropped && !isClickedInsidebutton ) {
         ME_menu.classList.remove('dropdown-ME-visible');
@@ -286,7 +330,11 @@ async function main(){
         modal_content.style.display = 'block';
         connect_loading_ind.style.display = 'none';
         modal.style.display = 'none';
+        
+
+        //setting appropriate event listener for wallet button
         connect_wallet_button.removeEventListener('click',show_connect_modal);
+        connect_wallet_button.addEventListener('click',show_wallet_info);
         disconnect_wallet_button.style.display = 'flex';
     }
 }
@@ -296,6 +344,35 @@ async function main(){
 
 const show_connect_modal = async()=>{
     modal.style.display = 'flex'; 
+}
+
+//setting balances for wallet info box
+async function set_balances(){
+
+    if (wallet_info_viewed){
+        return
+    }
+    const sol_balance = await get_sol_balance();
+    wallet_info_balance_sol.textContent = `${sol_balance / 1000000000}`.substring(0,6);
+    wallet_info_balance_token.textContent = `${sol_balance / 1000000000}`.substring(0,6);
+
+    console.log(sol_balance);
+    wallet_info_viewed = true;
+}
+
+//showing the wallet info-box for wallet info box
+const show_wallet_info = async()=>{
+    setTimeout(async () => {        
+        if (!wallet_info_dropped){
+            wallet_info_box.classList.add('dropdown-wallet-info-visible')
+            wallet_info_dropped = true
+        }else{
+            wallet_info_box.classList.remove('dropdown-wallet-info-visible')
+            wallet_info_dropped = false;
+        }
+        await set_balances();
+    }, 100);
+    
 }
 
 connect_wallet_button.addEventListener('click',show_connect_modal)

@@ -1,6 +1,8 @@
 import { showAlert } from "./snackbar";
 import {wallet_type,owner} from "./main-bundle"
 
+
+//constants
 const pools = document.querySelectorAll('.pool');     
 const sol_pool = document.querySelector('.sol-pool') as HTMLElement;     
 const usdc_pool = document.querySelector('.usdc-pool') as HTMLElement;     
@@ -9,14 +11,29 @@ const green_dot = document.querySelector('.green-dot') as HTMLElement;
 const red_dot = document.querySelector('.red-dot') as HTMLElement;
 const pool_buttons = document.querySelectorAll('.pool-button');
 const button1 = document.querySelector('.button1') as HTMLButtonElement;
+const question_slots  = document.querySelectorAll('.question.question-init');
+const faq_section = document.querySelector('.faq') as HTMLElement;
+const pool_logos = document.querySelectorAll('.logo-container');
+//vars
+
+var prev_faq:any = null; 
+
+
+
+
+//smooth scroll to faq on clicking ? on pool logos
+pool_logos.forEach((ele:Element)=>{
+  ele.addEventListener('click',()=>{
+    faq_section.scrollIntoView({behavior:'smooth', block: "center", inline: "nearest"});
+  })
+})
 
 //sleep function
 function sleep(ms:number) {
     return new Promise(resolve => setTimeout(resolve, ms));
  }
 
-
-//status indicator dot blinking
+ //status indicator dot blinking
  setInterval(async () => {
     for (var i=0 ; i < 3 ; i++){
         await sleep(300);
@@ -48,6 +65,7 @@ function sleep(ms:number) {
     }, 1000);
 
 }, 3000); 
+
 
 //adding event listeners for inactive pool_buttons
 
@@ -86,6 +104,25 @@ const observer = new IntersectionObserver((entries: IntersectionObserverEntry[])
   elements.forEach((element: Element) => {
     observer.observe(element);
   });
+
+  //adding event listeners and interactivity to question dropdowns
+  
+  
+  question_slots.forEach((e:Element) => {
+    const question_slot = e as HTMLElement;
+    question_slot.addEventListener('click', ()=>{
+        
+      question_slot.classList.toggle('question-clicked')
+      const arrow_down = question_slot.children[0].children[1] as HTMLElement
+      if (arrow_down.textContent === '▴' ){
+          arrow_down.textContent = '▾';
+      }else{
+          arrow_down.textContent = '▴';
+      }
+      
+      })
+
+  })
 
 
 

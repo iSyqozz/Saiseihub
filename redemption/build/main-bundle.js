@@ -1,4 +1,5 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -10,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.menu_disappear_id = exports.menu_appear_id = exports.side_menu_appeared = exports.prevScrollPos = exports.scrollTimeout = exports.is_arrow_animating = exports.temp_id = exports.view_button_pop = exports.content_intersected = exports.me_dropped = exports.owner = exports.wallet_type = void 0;
+exports.wallet_info_viewed = exports.menu_disappear_id = exports.menu_appear_id = exports.side_menu_appeared = exports.prevScrollPos = exports.scrollTimeout = exports.is_arrow_animating = exports.temp_id = exports.view_button_pop = exports.content_intersected = exports.wallet_info_dropped = exports.me_dropped = exports.owner = exports.wallet_type = void 0;
 const snackbar_1 = require("./snackbar");
 const header = document.querySelector('header');
 const nav = document.querySelector('header');
@@ -35,20 +36,51 @@ const disconnect_wallet_button = document.querySelector('.disconnect-wallet');
 const view_up_button = document.querySelector('.up-arrow-container');
 const arrow_pic = document.querySelector('.up-arrow1');
 const clouds = document.querySelectorAll('.clouds');
+const wallet_info_box = document.querySelector('.dropdown-wallet-info');
+const wallet_info_balance_sol = document.querySelector('.wallet-info-balance-sol');
+const wallet_info_balance_token = document.querySelector('.wallet-info-balance-token');
 //global state and control variables
 exports.wallet_type = '';
 exports.owner = '';
 exports.me_dropped = false;
+exports.wallet_info_dropped = false;
 exports.content_intersected = false;
 exports.view_button_pop = false;
 exports.temp_id = null;
 exports.is_arrow_animating = false;
 exports.prevScrollPos = window.scrollY;
 exports.side_menu_appeared = false;
+exports.wallet_info_viewed = false;
 //sleep function
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+//getting connected wallet sol and sushi balance
+function get_sol_balance() {
+    return __awaiter(this, void 0, void 0, function* () {
+        var res = 0;
+        yield fetch('https://saisei-server.com/get_balance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                address: exports.owner,
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+            res = data;
+            //console.log(data);
+        })
+            .catch(error => {
+            res = 0;
+        });
+        return res;
+    });
+}
+;
 //syncing header and side menu
 header.addEventListener('mouseover', () => {
     if (window.scrollY >= 100) {
@@ -66,6 +98,13 @@ document.addEventListener('click', (event) => {
     const isClickedInsideDropdownMenu = ME_menu.contains(event.target);
     const isClickedInsidebutton = ME_button.contains(event.target) || ME_button2.contains(event.target);
     const temp = ME_menu.classList.value;
+    const isClickedinsidewalletinfo = wallet_info_box.contains(event.target);
+    const isClickedinsidewalletinfobutton = connect_wallet_button.contains(event.target);
+    // if the click is outside of the wallet-info-box, hide it
+    if (!isClickedinsidewalletinfo && exports.wallet_info_dropped && !isClickedinsidewalletinfobutton) {
+        wallet_info_box.classList.remove('dropdown-wallet-info-visible');
+        exports.wallet_info_dropped = false;
+    }
     // if the click is outside of the dropdown menu, hide it
     if (!isClickedInsideDropdownMenu && exports.me_dropped && !isClickedInsidebutton) {
         ME_menu.classList.remove('dropdown-ME-visible');
@@ -260,7 +299,9 @@ function main() {
             modal_content.style.display = 'block';
             connect_loading_ind.style.display = 'none';
             modal.style.display = 'none';
+            //setting appropriate event listener for wallet button
             connect_wallet_button.removeEventListener('click', show_connect_modal);
+            connect_wallet_button.addEventListener('click', show_wallet_info);
             disconnect_wallet_button.style.display = 'flex';
         }
     });
@@ -268,6 +309,33 @@ function main() {
 //connect wallet button click
 const show_connect_modal = () => __awaiter(void 0, void 0, void 0, function* () {
     modal.style.display = 'flex';
+});
+//setting balances for wallet info box
+function set_balances() {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (exports.wallet_info_viewed) {
+            return;
+        }
+        const sol_balance = yield get_sol_balance();
+        wallet_info_balance_sol.textContent = `${sol_balance / 1000000000}`.substring(0, 6);
+        wallet_info_balance_token.textContent = `${sol_balance / 1000000000}`.substring(0, 6);
+        console.log(sol_balance);
+        exports.wallet_info_viewed = true;
+    });
+}
+//showing the wallet info-box for wallet info box
+const show_wallet_info = () => __awaiter(void 0, void 0, void 0, function* () {
+    setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+        if (!exports.wallet_info_dropped) {
+            wallet_info_box.classList.add('dropdown-wallet-info-visible');
+            exports.wallet_info_dropped = true;
+        }
+        else {
+            wallet_info_box.classList.remove('dropdown-wallet-info-visible');
+            exports.wallet_info_dropped = false;
+        }
+        yield set_balances();
+    }), 100);
 });
 connect_wallet_button.addEventListener('click', show_connect_modal);
 //sidconnect wallet button click
@@ -375,6 +443,156 @@ view_up_button.addEventListener('mouseover', () => {
         }
     }, 500);
 });
+
+},{"./snackbar":2}],2:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.showAlert = exports.Snackbar = void 0;
+class Snackbar {
+    constructor() {
+        this.active = null;
+        this.progress = -1;
+        this.queue = [];
+        this.timer = -1;
+        // Durations (ms).
+        // Should equal the CSS opacity transition.
+        this.cssAnimationDelay = 500;
+        // Should be 100x the CSS progress transition.
+        this.visibilityDuration = 3000;
+        // Create the DOM container.
+        // This could be moved to a private function.
+        const unid = "snackbar" + +new Date();
+        const domElement = document.createElement('div');
+        domElement.className = "snackbar";
+        domElement.id = unid;
+        document.body.appendChild(domElement);
+        this.domElement = document.getElementById(unid);
+        // This is the snackbar DOM element.
+        this.snackElement = null;
+        // This is the progress bar DOM element.
+        this.progressElement = null;
+        // Function bindings.
+        this.hide = this.hide.bind(this);
+    }
+    hide(msg, is_good) {
+        this.active = null;
+        window.clearInterval(this.timer);
+        // I'm making a bad assumption that this.snackElement
+        // will always exist at this point.
+        try {
+            this.snackElement.classList.remove('active');
+        }
+        catch (e) {
+            console.log(e);
+        }
+        // This timer ensures no snacks appear simultaneously
+        // whilst allowing the element to transition (CSS).
+        window.setTimeout(() => {
+            // Remove the snack element completely.
+            try {
+                this.domElement.removeChild(this.snackElement);
+            }
+            catch (e) {
+                console.log(e);
+            }
+            // Reset the progress.
+            this.progress = -1;
+            // If the queue isn't empty, show the next snack.
+            if (this.queue.length)
+                this.show(this.queue[0], true, msg, is_good);
+        }, 500);
+    }
+    show(config, important, msg, is_good) {
+        if (!config)
+            return false;
+        // Assign the config a UNID.
+        if (!config._sbid)
+            config._sbid = +new Date(); // Bad.
+        const queuePopulated = this.queue.length;
+        // If it's unimportant, add it to the queue.
+        if (this.active && !important)
+            return this.queue.push(config);
+        // Otherwise, show it immediately.
+        // If it's from the queue, remove it.
+        if (queuePopulated && config._sbid === this.queue[0]._sbid)
+            this.queue.shift();
+        // If one is already active, place it back at the
+        // start of the queue, ready to be displayed next.
+        if (this.active) {
+            this.queue.unshift(this.active);
+            // Place this one at the front of the queue.
+            this.queue.unshift(config);
+            // Hide the current one.
+            // This function will then grab the next one from
+            // the queue, so we return.
+            return this.hide(msg, is_good);
+        }
+        // Make it active.
+        this.active = config;
+        // Create the snack element. This would be a
+        // private method in an actual implementation.
+        const snackElement = document.createElement('div');
+        snackElement.className = "snack";
+        const snackMessage = document.createElement('span');
+        snackMessage.innerText = msg;
+        snackElement.appendChild(snackMessage);
+        // Add the ✘ if it's dismissible.
+        if (config.dismissible) {
+            const dismissControl = document.createElement('button');
+            dismissControl.type = 'button';
+            dismissControl.innerText = '✘';
+            dismissControl.onclick = this.hide;
+            snackElement.appendChild(dismissControl);
+            snackElement.classList.add('dismissible');
+            if (is_good != true) {
+                dismissControl.style.background = 'red';
+            }
+            else {
+                dismissControl.style.background = 'rgb(2, 197, 197)';
+            }
+        }
+        // Add in the progress bar.
+        const progressBar = document.createElement('div');
+        progressBar.className = 'progress';
+        if (is_good != true) {
+            progressBar.style.background = 'red';
+        }
+        else {
+            progressBar.style.background = 'rgb(2, 197, 197)';
+        }
+        snackElement.appendChild(progressBar);
+        this.progressElement = progressBar;
+        this.snackElement = snackElement;
+        this.domElement.appendChild(snackElement);
+        // Start the progress counter.
+        this.timer = window.setInterval(() => {
+            this.progress++;
+            // If it's the first iteration, add the active
+            // class to the element. Shh, this is a hack.
+            if (this.progress === 0)
+                this.snackElement.classList.add('active');
+            // Increment the progress bar.
+            const snackWidth = this.snackElement.clientWidth;
+            this.progressElement.style.width = (this.progress / 100) * snackWidth + 'px';
+            // If the progress is at 100, it's time to go.
+            if (this.progress === 100)
+                this.hide(msg, is_good);
+        }, Math.round(this.visibilityDuration / 100));
+    }
+}
+exports.Snackbar = Snackbar;
+function showAlert(msg, is_good, ele) {
+    const prevs = document.getElementsByClassName('snackbar');
+    for (var i = 0; i < prevs.length; i++) {
+        const element = prevs[i];
+        element.classList.add('hide');
+    }
+    const alert = new Snackbar();
+    alert.show(ele.dataset, false, msg, is_good);
+}
+exports.showAlert = showAlert;
+
+},{}]},{},[1]);
 
 },{"./snackbar":2}],2:[function(require,module,exports){
 "use strict";

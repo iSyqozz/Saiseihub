@@ -1,3 +1,11 @@
+
+add fade in animations to the faq cards
+add powerd by and all rights and reserves section.
+maybe add some connect logic.
+maybe add some content in the faq section.
+
+
+
 1. 5% on lp site for us.
 2. 3 years till tokens run out.
 3. 

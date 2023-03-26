@@ -211,6 +211,59 @@ header nav .text:hover{
     text-shadow: 0px 0px 10px white;
 }
 
+.dropdown-wallet-info{
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    position: fixed;
+    flex-direction: column;
+    background-color: #22222267;
+    border: 1px solid rgb(108, 122, 179);
+    margin-top: 43px;
+    margin-left: -7px;
+    width: 175px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dropdown-wallet-info-visible{
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown-wallet-info div{
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+}
+
+
+.wallet-info-balance-logo{
+    margin-left: 10px;
+    margin-top: 2px;
+    width: 25px;
+    height: 25px;
+}
+
+.wallet-info-balance-text{
+    letter-spacing: 1px;
+    margin-left: 5px;
+}
+
+.wallet-info-balance-sol{
+    margin-left: 10px;
+    letter-spacing: 1px;
+}
+
+.wallet-info-balance-token{
+    margin-left: 10px;
+    letter-spacing: 1px;
+}
+
+
 
 
 
@@ -480,6 +533,24 @@ header nav .text:hover{
     opacity: 1;
 }
 
+.rights{
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    font-size: 15;
+    font-weight: bolder;
+    text-align: center;
+    color: white;
+    background-color: #22222267;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgb(108, 122, 179);
+}
+
 
 
 @media only screen and (min-width:750px){
@@ -518,4 +589,16 @@ header nav .text:hover{
         top: 220px;
 
     }
+
+    .dropdown-wallet-info{
+        left: 71.2%;
+    }
+}
+
+@media only screen and (max-width:550px){
+
+    .dropdown-wallet-info{
+        left: 52%;
+    }
+
 }
