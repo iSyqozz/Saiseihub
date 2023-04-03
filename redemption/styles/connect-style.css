@@ -60,7 +60,7 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 1000;
+    font-weight: 20;
     color: #fff;
     background: linear-gradient(90deg, rgb(22, 25, 36) 2%, #4e4e50 50%, rgb(22, 25, 36) 98%);
     cursor: pointer;

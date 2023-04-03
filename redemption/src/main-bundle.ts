@@ -20,6 +20,8 @@ const return_button = document.querySelector('#quit')as HTMLElement;
 const modal = document.querySelector('.modal1')as HTMLElement;
 const modal_content = document.querySelector('.modal1-box')as HTMLElement;
 const connect_loading_ind = document.querySelector('.loader--style8')as HTMLElement;
+const loader_text = document.querySelector('.loader-prompt') as HTMLElement;
+
 const button1 = document.querySelector('.button1') as HTMLButtonElement;
 const ME_button = document.querySelectorAll('.me-button')[0] as HTMLElement;
 const ME_button2 = document.querySelectorAll('.me-button')[1] as HTMLElement;
@@ -30,14 +32,16 @@ const side_menu_button = document.querySelector('.menu-button') as HTMLElement;
 const side_menu = document.querySelector('.side-menu') as HTMLElement;
 const side_text = document.querySelectorAll('.text-side'); 
 
-const connect_wallet_button = document.querySelector('.connect-wallet') as HTMLElement;
+export const connect_wallet_button = document.querySelector('.connect-wallet') as HTMLElement;
 const disconnect_wallet_button = document.querySelector('.disconnect-wallet') as HTMLElement;
 const view_up_button = document.querySelector('.up-arrow-container') as HTMLElement;
 const arrow_pic = document.querySelector('.up-arrow1') as HTMLImageElement;
 const clouds = document.querySelectorAll('.clouds');
 const wallet_info_box = document.querySelector('.dropdown-wallet-info') as HTMLElement
 const wallet_info_balance_sol = document.querySelector('.wallet-info-balance-sol') as HTMLElement;
-const wallet_info_balance_token = document.querySelector('.wallet-info-balance-token') as HTMLElement;
+export const wallet_info_balance_token = document.querySelector('.wallet-info-balance-token') as HTMLElement;
+const wallet_type_text = document.querySelector('.wallet-type-text') as HTMLElement;
+const wallet_type_img = document.querySelector('.wallet-type-logo') as HTMLImageElement;
 
 //global state and control variables
 export var wallet_type:string = '';
@@ -54,7 +58,7 @@ export var side_menu_appeared:boolean = false;
 export var menu_appear_id:any
 export var menu_disappear_id:any
 export var wallet_info_viewed:boolean = false;
-
+console.log('test');
 
 
 //sleep function
@@ -87,26 +91,74 @@ function sleep(ms:number) {
         res = 0;
       })
       return res
-    }; 
+    };
+
+async function get_kai_balance(){
+
+    var res:number = 0;
+    await fetch('https://saisei-server.com/get_kai', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify({
+        address: owner,
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        res = data;
+        //console.log(data);
+      })
+      .catch(error => {
+        res = 0;
+      })
+      return res
+    };
+    
+    
+export function dim(content:string){
+    modal_content.style.display = 'none';
+    modal.style.display = 'flex'; 
+    connect_loading_ind.style.display = 'block';
+    loader_text.style.display = 'block';
+    loader_text.innerHTML = content;
+}
+
+export function undim(content:string){
+    modal_content.style.display = 'block';
+    modal.style.display = 'none'; 
+    connect_loading_ind.style.display = 'none';
+    loader_text.style.display = 'none';
+    loader_text.innerHTML = '';
+}
+
+
+setTimeout( async () => {
+    dim('');
+    await sleep(1000)
+    undim('');
+}, 10);
 
 
  
  //syncing header and side menu
  header.addEventListener('mouseover',()=>{
     if (window.scrollY >= 100){
-        side_menu.style.marginTop = '70px';
+        side_menu.style.marginTop = '50px';
     }
  })
 
  header.addEventListener('mouseout',()=>{
     if (window.scrollY >= 100){
-        side_menu.style.marginTop = '60px';
+        side_menu.style.marginTop = '40px';
     }
  })
  
  
  //adding global click event listeners for UX and click logic
- document.addEventListener('click', (event:MouseEvent) => {
+document.addEventListener('click', (event:MouseEvent) => {
     // check if the target element of the event is inside the dropdown menu or not
     const isClickedInsideDropdownMenu = ME_menu.contains(event.target as Node);
     const isClickedInsidebutton = ME_button.contains(event.target as Node) || ME_button2.contains(event.target as Node);
@@ -133,12 +185,12 @@ function sleep(ms:number) {
 //scroll top nav dim and clouds/brand animation
 window.addEventListener('scroll',function(){
     if (window.scrollY >= 100 && !content_intersected){
-        nav.classList.toggle('scrolled-to-content');
+        nav.classList.add('scrolled-to-content');
         content_intersected = true;
-        side_menu.style.marginTop = '60px'
+        side_menu.style.marginTop = '40px'
     }else if(window.scrollY < 100 && content_intersected){
-        side_menu.style.marginTop = '70px'
-        nav.classList.toggle('scrolled-to-content');
+        side_menu.style.marginTop = '50px'
+        nav.classList.remove('scrolled-to-content');
         content_intersected = false;
     }
 
@@ -303,39 +355,54 @@ async function connect_wallet(){
 
 async function main(){
 
-    modal_content.style.display = 'none';
-    connect_loading_ind.style.display = 'block';
-
+    dim('');
     //checking selected wallet
     const is_installed = check_wallet();
     
     if (!is_installed){
+        console.log('checking installation')
         modal_content.style.display = 'block';
         connect_loading_ind.style.display = 'none';
         //return early from the function
         return
     }
 
+    dim('A pop-up should appear from<br/>your wallet extension to connect.')
+
     //else we connect to the selected wallet
     const connected = await connect_wallet();
     
     if (!connected){
+        dim('');
         modal_content.style.display = 'block';
         connect_loading_ind.style.display = 'none';
         //return early from the function
         return
     }else{
+
+        try{
+            window.solana.on('accountChanged',()=>{
+                location.reload();
+            })
+        }catch{}
+        try{
+            window.solflare.on('accountChanged',()=>{
+                location.reload();
+            })
+        }catch{}
+
+
+        undim('');
         const display_key = owner.substring(0,6)+'..'+'&#160&#160&#160&#160▾';
         connect_wallet_button.innerHTML = display_key;
         modal_content.style.display = 'block';
-        connect_loading_ind.style.display = 'none';
-        modal.style.display = 'none';
         
 
         //setting appropriate event listener for wallet button
         connect_wallet_button.removeEventListener('click',show_connect_modal);
         connect_wallet_button.addEventListener('click',show_wallet_info);
         disconnect_wallet_button.style.display = 'flex';
+        return
     }
 }
 
@@ -347,17 +414,34 @@ const show_connect_modal = async()=>{
 }
 
 //setting balances for wallet info box
-async function set_balances(){
+export async function set_balances(){
 
     if (wallet_info_viewed){
         return
     }
     const sol_balance = await get_sol_balance();
+    const kai_balance = await get_kai_balance();
+
     wallet_info_balance_sol.textContent = `${sol_balance / 1000000000}`.substring(0,6);
-    wallet_info_balance_token.textContent = `${sol_balance / 1000000000}`.substring(0,6);
+    wallet_info_balance_token.textContent = `${kai_balance}`.substring(0,9);
 
     console.log(sol_balance);
     wallet_info_viewed = true;
+}
+
+//set wallet meta-stuff
+function set_wallet_meta(){
+
+    if (wallet_type === 'phantom'){
+        wallet_type_img.src =  './assets/phantom.svg'
+    }else if(wallet_type === 'solflare'){
+        wallet_type_img.src =  './assets/solflare.svg'
+    }else if(wallet_type === 'slope'){
+        wallet_type_img.src =  './assets/slope.svg'
+    }else if(wallet_type === 'brave'){
+        wallet_type_img.src =  './assets/Brave.svg'
+    }
+    wallet_type_text.textContent = wallet_type;
 }
 
 //showing the wallet info-box for wallet info box
@@ -370,6 +454,8 @@ const show_wallet_info = async()=>{
             wallet_info_box.classList.remove('dropdown-wallet-info-visible')
             wallet_info_dropped = false;
         }
+
+        set_wallet_meta();
         await set_balances();
     }, 100);
     

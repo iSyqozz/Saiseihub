@@ -1,6 +1,6 @@
 .loader{
     display: none;
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
@@ -28,4 +28,31 @@
   #layer_1{
     width: 100px;
     height: 100px;
+  }
+
+  @keyframes float3 {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .loader-prompt{
+    display: none;
+    position: fixed;
+    top: 60vh;
+    text-align: center;
+    width: 100%;
+    height: fit;
+    font-size: xx-large;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+    z-index: 9999999999999999999999999;
+    animation: float3 1.5s ease-in-out infinite;
   }

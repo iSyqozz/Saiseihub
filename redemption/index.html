@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">">
     <title>Redemption</title>
     <link rel="stylesheet/less" type="text/css" href="redemption/styles/snack.less">
     <link rel="stylesheet" type="text/css" href="redemption/styles/main-style.css">
@@ -35,6 +35,19 @@
         <button class="disconnect-wallet"><img class="disconnect" src="redemption/assets/shut-down.svg" alt=""></button>
         <button class="connect-wallet">Connect wallet</button>
         <div class="dropdown-wallet-info">
+
+
+          <div class="wallet-info-headers"><span>wallet info</span></div>
+          
+
+          <div>
+            <img class="wallet-info-balance-logo wallet-type-logo" src="redemption/assets/phantom.svg" alt="">
+            <div class="wallet-info-balance-text">• Provider:</div> 
+            <div class="wallet-info-balance-wallet wallet-type-text">Phantom</div> 
+          </div>
+
+
+          <div class="wallet-info-headers"><span>balances</span></div>
       
           <div> 
             <img class="wallet-info-balance-logo" src="redemption/assets/Solana-Logo.png" alt="">
@@ -43,10 +56,12 @@
           </div>
     
           <div> 
-            <img class="wallet-info-balance-logo" src="redemption/assets/Solana-Logo.png" alt="">
-            <div class="wallet-info-balance-text">• SOL:</div> 
+            <img class="wallet-info-balance-logo" src="redemption/assets/kai-logo.png" alt="">
+            <div class="wallet-info-balance-text">• KAI:</div> 
             <div class="wallet-info-balance-token">---</div>
           </div>
+
+          <div class="wallet-info-headers wallet-info-portfolio"><span>Portfolio&nbsp;&nbsp;&nbsp;▾</span></div>
     
         </div>
         
@@ -89,6 +104,35 @@
   </div>
 </div>
 
+<!--deposit modal-->
+<div class="modal2">
+  <div class="modal2-box">
+    <div class="modal2-content">
+        <h2 class="modal2-title">Deposit</h2>
+        <div class="deposit-amount-container">
+          
+          <div class="amount-indicator"><div>0</div></div>
+          
+          <div class="slider">
+            <div class="slider-bar">
+              <div class="slider-progress"></div>
+              <div class="slider-handle"></div>
+            </div>
+            <div class="slider-value"></div>
+          </div>
+          
+          <div class="max-button"><div>MAX</div></div>
+        
+        </div>
+
+        <button class="wallet-btn deposit-modal-button" id="quit"><span>Deposit</span></button>
+        <button class="wallet-btn deposit-modal-button return" id="quit"><span>return</span></button>
+
+        
+      </div>
+  </div>
+</div>
+
 
 
 
@@ -113,6 +157,9 @@
     </rect>
   </svg>
 </div>
+
+<!--Loader promt-->
+<div class="loader-prompt"> this is a test prompt</div>
 
 
 
@@ -149,13 +196,18 @@
 <!--Redemption pools-->
 
 <div class="pools-container">
+
+  <div class="claim-notifier">
+    <span> you have unclaimed earnings.</span>
+    <span class="claim-anchor"> Claim Now!</span>
+  </div>
   
   <!--Sol Pool-->
   <div class="pool" id="sol-pool">
     
     <div class="status-container">
-      <div class="status"><span>Pool inactive</span></div>
-      <div class="green-dot dot"></div>
+      <div class="status"><span class="is-inactive">Pool inactive</span></div>
+      <div class="red-dot dot"></div>
     </div>
 
     <div class="logo-container">
@@ -164,9 +216,20 @@
     </div>
 
     <div class="info-sum">
-      <div class="info-top"></div>
-      <div class="info-mid"></div>
-      <button class="connect-wallet pool-button pool-button-inactive">Deposit</button>
+      <div class="info-top">
+        <span class="rate-text">exchange rate</span>
+        <span class="rate-info">1 $KAI = <span>&nbsp;---</span> SOL</span>
+        <img class="refresh-ind" src="redemption/assets/refresh.webp" alt="">
+      </div>
+      
+      <div class="info-mid">
+
+        <div class="pool-amount info-slot"><div class="info-mid-text1">Pool Reserves:</div><div class="info-mid-text2">Inactive</div></div>
+        <div class="kai-amount info-slot"><div class="info-mid-text1">KAI Amount:</div><div class="info-mid-text2">Inactive</div></div>
+        <div class="expiry info-slot"><div class="info-mid-text1">expiration date:</div><div class="info-mid-text2">Inactive</div></div>
+
+      </div>
+      <button class="connect-wallet pool-button pool-button-inactive">not connected</button>
     </div>
 
   </div>
@@ -176,7 +239,7 @@
   <div class="pool" id="usdc-pool">
     
     <div class="status-container">
-      <div class="status"><span>Pool Active</span></div>
+      <div class="status"><span class="is-inactive">Pool inactive</span></div>
       <div class="red-dot dot"></div>
     </div>
 
@@ -186,9 +249,19 @@
     </div>
 
     <div class="info-sum">
-      <div class="info-top"></div>
-      <div class="info-mid"></div>
-      <button class="connect-wallet pool-button pool-button-inactive">Deposit</button>
+      <div class="info-top">
+        <span class="rate-text">exchange rate</span>
+        <span class="rate-info">1 $KAI = <span>&nbsp;---</span> USDC</span>
+        <img class="refresh-ind" src="redemption/assets/refresh.webp" alt="">
+      </div>
+      <div class="info-mid">
+      
+        <div class="pool-amount info-slot"><div class="info-mid-text1">Pool Reserves:</div><div class="info-mid-text2">Inactive</div></div>
+        <div class="kai-amount info-slot"><div class="info-mid-text1">KAI Amount:</div><div class="info-mid-text2">Inactive</div></div>
+        <div class="expiry info-slot"><div class="info-mid-text1">expiration date:</div><div class="info-mid-text2">Inactive</div></div>
+      
+      </div>
+      <button class="connect-wallet pool-button pool-button-inactive">not connected</button>
     </div>
   
   </div>
@@ -197,27 +270,151 @@
   <div class="pool" id="bonk-pool">
 
     <div class="status-container">
-      <div class="status"><span>Pool Active</span></div>
+      <div class="status"><span class="is-inactive">Pool inctive</span></div>
       <div class="red-dot dot"></div>
     </div>
 
     <div class="logo-container">
       <img class="pool-logo" src="redemption/assets/bonk-logo.png" alt="">
-      <img class="qm-grey" src="redemption/assets/grey-question-mark.png" alt="">  
+      <img class="qm-grey" src="redemption/assets/grey-question-mark.png" alt="">
+        
     </div>
 
     <div class="info-sum">
-      <div class="info-top"></div>
-      <div class="info-mid"></div>
-      <button class="connect-wallet pool-button pool-button-inactive">Deposit</button>
+      <div class="info-top">
+        <span class="rate-text">exchange rate</span>
+        <span class="rate-info">1 $KAI = <span>&nbsp;---</span> BONK</span>
+        <img class="refresh-ind" src="redemption/assets/refresh.webp" alt="">
+      </div>
+      <div class="info-mid">
+        <div class="pool-amount info-slot"><div class="info-mid-text1">Pool Reserves:</div><div class="info-mid-text2">Inactive</div></div>
+        <div class="kai-amount info-slot"><div class="info-mid-text1">KAI Amount:</div><div class="info-mid-text2">Inactive</div></div>
+        <div class="expiry info-slot"><div class="info-mid-text1">expiration date:</div><div class="info-mid-text2">Inactive</div></div>
+      </div>
+      <button class="connect-wallet pool-button pool-button-inactive">not connected</button>
     </div>
 
   </div>
 
 </div>
 
-<!--FAQ Section-->
+<!--Portfolio Section and FAQ section-->
 <div class="faq-container">
+
+  
+  
+  
+  <div class="portfolio-header-title"> <span>My Portfolio</span></div>
+
+  <div class="portfolio-container init-portfolio connected-portfolio pending-connection">
+    <div class="not-connected">
+      <span> Wallet Not connected </span>
+      <button class="connect-wallet">Connect wallet</button>
+    </div>
+
+    <div class="portfolio-segment portfolio-overview" style="display: none;">
+      <div class="segment-title">overview</div>
+      <div class="segment-content">
+        <div class="segment-content-container">
+          <div class="segment-content-header">Total deposited KAI</div>
+          <div class="segment-content-value">0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">estimated earnings</div>
+          <div class="segment-content-value">SOL: 0</div>
+          <div class="segment-content-value">USDC: 0</div>
+          <div class="segment-content-value">BONK: 0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">Unclaimed earnings</div>
+          <div class="segment-content-value">SOL: 0</div>
+          <div class="segment-content-value">USDC: 0</div>
+          <div class="segment-content-value">BONK: 0</div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="portfolio-segment portfolio-sol-pool" style="display: none;">
+      <div class="segment-title">SOL POOL</div>
+      <div class="segment-content segment-content-pools segment-content-sol" style="display: none;">
+        <div class="segment-content-container">
+          <div class="segment-content-header">Deposited KAI</div>
+          <div class="segment-content-value">0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">estimated earnings</div>
+          <div class="segment-content-value">0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">unclaimed earnings</div>
+          <div class="segment-content-value">0</div>
+        </div>
+
+        <div class="segment-content-container withdraw-container" style="padding: 0;">
+          <button class="connect-wallet pool-button-inactive">Withdraw</button>
+        </div>
+
+      </div>
+      <div class="pool-inactive">Pool Inactive</div>
+    </div>
+    
+    <div class="portfolio-segment portfolio-usdc-pool" style="display: none;">
+      <div class="segment-title">USDC POOL</div>
+      <div class="segment-content segment-content-pools segment-content-usdc" style="display: none;">
+        <div class="segment-content-container">
+          <div class="segment-content-header">Deposited KAI</div>
+          <div class="segment-content-value">0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">estimated earnings</div>
+          <div class="segment-content-value">0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">unclaimed earnings</div>
+          <div class="segment-content-value">0</div>
+        </div>
+
+        <div class="segment-content-container withdraw-container" style="padding: 0;">
+          <button class="connect-wallet pool-button-inactive">Withdraw</button>
+        </div>
+
+      </div>
+      <div class="pool-inactive">Pool Inactive</div>
+    </div>
+
+    <div class="portfolio-segment portfolio-bonk-pool" style="display: none;">
+      <div class="segment-title">BONK POOL</div>
+      <div class="segment-content segment-content-pools segment-content-bonk" style="display: none;">
+        <div class="segment-content-container">
+          <div class="segment-content-header">Deposited KAI</div>
+          <div class="segment-content-value">0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">estimated earnings</div>
+          <div class="segment-content-value">0</div>
+        </div>
+        <div class="segment-content-container">
+          <div class="segment-content-header">unclaimed earnings</div>
+          <div class="segment-content-value">0</div>
+        </div>
+
+        <div class="segment-content-container withdraw-container" style="padding: 0;">
+          <button class="connect-wallet pool-button-inactive">Withdraw</button>
+        </div>
+
+      </div>
+      <div class="pool-inactive">Pool Inactive</div>
+    </div>
+  
+  
+  </div>
+
+
+
+
+
+  <div class="faq-header-title"><span>guide & faq</span></div>
 
   <div class="faq faq-hidden" id="faq1">
     <div class="faq-title"><span>Redemption Pools</span></div>
@@ -226,8 +423,9 @@
       <div class="question-container"><div class="question-dot">•</div>
         <div class="question question-init">
           <div class="question-title">
-            <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
+            <span>This a test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>akhsgfd alkshfdg alskuhfd alsyudgf alskdugh asiukfg owiey dhg dhfgs dfhg asdhjg akjshgd kjahsg iweyg ajsh uwiyg ajsh jwh ajuysg jwgh ajhsgd jw3hv auyd jasbv uatsyfd</span></div>
         </div>
       </div>
 
@@ -236,6 +434,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
 
@@ -244,6 +443,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
     
@@ -259,6 +459,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
 
@@ -267,6 +468,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
 
@@ -275,6 +477,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
  
@@ -290,6 +493,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
 
@@ -298,6 +502,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
 
@@ -306,6 +511,7 @@
           <div class="question-title">
             <span>This a  test question 1</span><div class="arrow-down-question">▾</div>
           </div>
+          <div class="answer"> <span>this is a an answer to a question lmao.</span></div>
         </div>
       </div>
     </div>
@@ -322,9 +528,8 @@
   
 
 <!--JS scripts-->
-<script type="module" src="redemption/build/main-bundle.js" ></script>
 <script type="module" src="redemption/build/red-bundle.js" ></script>
     
-    
+
 </body>
 </html>
