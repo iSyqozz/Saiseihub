@@ -37,11 +37,21 @@ const sliderProgress = document.querySelector('.slider-progress') as HTMLElement
 const sliderHandle = document.querySelector('.slider-handle') as HTMLElement;
 const sliderValue = document.querySelector('.slider-value') as HTMLElement;
 const deposit_amount_indicator = document.querySelector('.amount-indicator') as HTMLElement;
-//const withdraw_amount_indicator = document.querySelector('.withdraw-indicator') as HTMLElement;
 const deposit_max_button = document.querySelector('.max-button') as HTMLElement;
 const deposit_modal_button = document.querySelector('.deposit-modal-button') as HTMLElement;
 const deposit_modal_return = document.querySelector('.wallet-btn.deposit-modal-button.return') as HTMLElement;
-const withdraw_buttons = document.querySelector('.withdraw-container') as HTMLElement;
+
+const modal3 = document.querySelector('.modal3')as HTMLElement;
+const sliderBar2 = document.querySelector('.slider-bar2') as HTMLElement;
+const sliderProgress2 = document.querySelector('.slider-progress2') as HTMLElement;
+const sliderHandle2 = document.querySelector('.slider-handle2') as HTMLElement;
+const sliderValue2 = document.querySelector('.slider-value2') as HTMLElement;
+const withdraw_amount_indicator = document.querySelector('.withdraw-amount-indicator') as HTMLElement;
+const withdraw_max_button = document.querySelector('.max-button2') as HTMLElement;
+const withdraw_modal_button = document.querySelector('.withdraw-modal-button') as HTMLElement;
+const withdraw_modal_return = document.querySelector('.wallet-btn.withdraw-modal-button.return') as HTMLElement;
+
+const withdraw_buttons = document.querySelectorAll('.withdraw-container button');
 
 
 
@@ -52,6 +62,8 @@ var isDragging = false;
 var value = 0;
 var choosen_pool = '';
 var refresh_ready:boolean = true;
+var withdraw_ready:boolean = true;
+var withdraw_pool:HTMLElement;
 
 
 
@@ -66,7 +78,7 @@ function sleep(ms:number) {
 async function get_pools_status(){
 
   var res:Array<any> = [];
-  await fetch('https://saisei-server.com/get_active_pools', {
+  await fetch('http://192.168.1.43:3000/get_active_pools', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -86,7 +98,7 @@ async function get_pools_status(){
 async function get_exchange_rate(pool:string){
 
   var res:number = 0;
-  await fetch('https://saisei-server.com/get_pool_exchange_rate', {
+  await fetch('http://192.168.1.43:3000/get_pool_exchange_rate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -111,7 +123,7 @@ async function get_exchange_rate(pool:string){
 async function get_kai_amount(pool:string){
 
   var res:number = 0;
-  await fetch('https://saisei-server.com/get_pool_kai', {
+  await fetch('http://192.168.1.43:3000/get_pool_kai', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -128,6 +140,34 @@ async function get_kai_amount(pool:string){
       res = 0;
     })
     return res
+}
+
+//getting user deposits
+async function check_user_kai(user:string,pool:string,amount:number){
+
+  var res:boolean = true;
+  await fetch('http://192.168.1.43:3000/check_user_deposits', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    body:JSON.stringify({
+      owner:user,
+      pool:pool,
+      amount:amount,
+    })})
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      res = data
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    
+  return res
+
 }
 
 
@@ -287,8 +327,6 @@ function setup_portfolio(sol_number:number,usdc_number:number,bonk_number:number
   console.log(tot_kai);
   tot_kai!.textContent = tot.toString().substring(0,9);
 
-
-
 }
 
 
@@ -300,15 +338,16 @@ async function main_redemption(){
   
   //setting up the pools status and info and style and functionality
   dim('');
-  if (pool_status[0] === 1){
+  const currentTimestamp = new Date().getTime();
+  if (pool_status[0] === 1 && pool_status[6] > currentTimestamp){
     setup_pool(sol_pool,0);
   }
 
-  if (pool_status[1] === 1){
+  if (pool_status[1] === 1 && pool_status[7] > currentTimestamp){
     setup_pool(usdc_pool,1);
   }
 
-  if (pool_status[2] === 1){
+  if (pool_status[2] === 1 && pool_status[8] > currentTimestamp){
     setup_pool(bonk_pool,2);
   }
   undim('');
@@ -323,7 +362,7 @@ const interval_id = setInterval(async () => {
         pool_button.removeEventListener('click',blocked_click);
         
 
-        if(pool_status[i] === 0){
+        if(pool_status[i] === 0 && pool_status[6] > currentTimestamp){
           pool_button.textContent = 'Inactive';
           pool_button.addEventListener('click',pool_inactive_click);
         }else{
@@ -347,7 +386,7 @@ const interval_id = setInterval(async () => {
 
       try{
 
-        await fetch('https://saisei-server.com/get_user_deposits', {
+        await fetch('http://192.168.1.43:3000/get_user_deposits', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -370,6 +409,18 @@ const interval_id = setInterval(async () => {
         }catch(e){
           console.log(e)
         }
+
+        for(var i=0; i<withdraw_buttons.length;i++){
+          const button = withdraw_buttons[i] as HTMLElement;
+          if (pool_status[i] === 1){
+            
+            button.classList.remove('pool-button-inactive');
+            button.addEventListener('click', ()=>{
+              withdraw_pool = button.parentElement!.parentElement! ;
+              withdraw_enabled_click();
+            })
+          }
+        } 
 
     }
 
@@ -457,14 +508,338 @@ connect_wallet_portfolio.addEventListener('click',()=>{
 })
 
 
+
+
+async function sign_message(pool:string){
+
+  try{
+
+  var pool_name = ''; 
+  if (pool === 'segment-content-sol'){
+    pool_name = 'SOL'
+  }else if(pool === 'segment-content-usdc'){
+    pool_name = 'USDC'
+  }else{
+    pool_name = 'BONK'
+  }
+
+  const message = `Your signature is required to verify your ownership of the connected wallet and the request to withdraw your deposited KAI from the ${pool_name} pool.`
+  const encoded_msg = new TextEncoder().encode(message);
+
+    //const transaction_buffer = Buffer.from(transaction,'base64');
+    //const raw_tx = Transaction.from(transaction_buffer);
+  
+    if (wallet_type === 'phantom'){
+      const signed_message = await window.solana.signMessage(encoded_msg,{skipPreflight: false});
+      return signed_message;
+    }
+    else if(wallet_type === 'solflare'){
+      const signed_message = await window.solflare.signMessage(encoded_msg,'utf8');
+      return signed_message;
+    }
+    else if(wallet_type === 'slope'){
+      const slope = new window.Slope();
+      const signed_message = await slope.signMessage(encoded_msg,'utf8');
+      if(!signed_message.data.signature){throw new Error('failed to sign message with slope wallet');
+      }
+      return signed_message.data
+    }
+    else if(wallet_type === 'brave'){
+      const signed_message = await window.solana.signMessage(encoded_msg,{skipPreflight: false});
+      return signed_message;
+    }
+  }catch(e){
+    console.log(e);
+    return 'failed';
+  }
+
+}
+
+
+//deposit and withdrawal section
+async function confirm_withdrawal(){
+
+  const desired = withdraw_pool.classList[2];
+  const amount = parseInt(withdraw_amount_indicator.textContent as string);
+
+
+  if (withdraw_amount_indicator.textContent === '0'){
+    showAlert(`Amount cannot be zero! `,false,button1);
+    return
+  }
+
+
+  dim('fetching deposits');
+  await sleep(1000);
+  const valid1 = await check_user_kai(owner,desired,amount);
+  if (valid1 === false){
+    showAlert('failed to fetch deposits',false,button1);
+    undim('');
+    return
+  }
+  
+  
+  dim('waiting for message signature verification');
+  var signed_message  = await sign_message(desired);
+  if (signed_message === 'failed'){
+    showAlert('Ownership verification failed',false,button1);
+    undim('');
+    return
+  }  
+  
+  dim('verifying ownership.')
+  await sleep(500);
+  const transaction = await get_withdrawal_transaction();
+  if (transaction === 'failed'){
+    showAlert('Failed to fetch Transaction',false,button1);
+    undim('');
+    return
+  }
+
+
+  //  waiting for transaction approval and signature
+  dim('Waiting for Transaction Approval.');
+  const signed_transaction = await sign_transaction(transaction);
+  if (signed_transaction === 'failed'){
+    showAlert('Transaction Signature Failed',false,button1);
+    undim('');
+    return
+  }
+
+
+  //verifying and sending transaction
+  dim('Sending Transaction.');
+  console.log(signed_message.signature);
+  if(wallet_type != 'slope'){
+    signed_message = (Buffer.from(signed_message.signature).toString('base64'));
+  }else{
+    signed_message = signed_message.signature;
+  }
+  const status = await verify_and_send_withdraw_transaction(signed_message,signed_transaction,desired,wallet_type);
+  if ( status === 0 ){
+    showAlert('Failed to send transaction',false,button1);
+    undim('');
+  }else{
+    var pool:string = '';
+    if (desired === 'segment-content-sol'){ pool = 'sol-pool'}
+    else if (desired === 'segment-content-usdc'){ pool = 'usdc-pool'}
+    else { pool = 'bonk-pool'}
+    undim('');
+
+    showAlert('Transaction Approved and Successfully sent!',true,button1);
+    reset_withdraw_modal();
+  }
+  
+
+
+  //  
+  //  //fetching transaction
+  //  dim('Fetching Transaction.');
+  //  await sleep(1000);
+  //  const transaction:string = await get_deposit_transaction();
+  //  if (transaction === 'failed'){
+  //    showAlert('Failed to fetch Transaction',false,button1);
+  //    undim('');
+  //    return
+  //  }
+//
+  //  //waiting for trabsaction approval and signature
+  //  dim('Waiting for Transaction Approval.');
+  //  const signed_transaction = await sign_transaction(transaction);
+  //  if (signed_transaction === 'failed'){
+  //    showAlert('Transaction Signature Failed',false,button1);
+  //    undim('');
+  //    return
+  //  }
+  //  
+  //  
+  //  //sending the transaction
+  //  dim('Sending Transaction.');
+  //  const sig = await send_transaction(signed_transaction);
+  //  if (sig === ''){
+  //    showAlert('Failed to send Transaction',false,button1);
+  //    undim('')
+  //    return
+  //  }
+//
+  //  dim('Verifying Transaction');
+  //  const is_valid = await verify_deposit_transaction(sig);
+//
+  //  undim('');
+  //  reset_deposit_modal();
+  //  await adjust_amounts(amount,current_pool);
+  //  showAlert('Transaction Approved and Successfully sent!',true,button1);
+} 
+
+const withdraw_inactive_click = () =>{
+  showAlert('no assets to withdraw!',false,button1);
+}
+
+const withdraw_enabled_click = async () =>{
+  dim('');
+  await set_balances(); 
+  undim('');
+  modal3.style.display = 'flex';
+}
+
+function reset_withdraw_modal(){
+  modal3.style.display = 'none';
+  sliderHandle2.style.transform = `translateX(${0}px)`;
+  sliderProgress2.style.width = `${0}px`;
+  withdraw_amount_indicator.textContent = '0';
+  updateValue2();
+}
+
+withdraw_max_button.addEventListener('click',()=>{
+  sliderHandle2.style.transform = `translateX(${68}px)`;
+  sliderProgress2.style.width = `${68}px`;
+  var segments = [];
+    
+  const sol_segment = document.querySelector('.segment-content-sol');
+  const usdc_segment = document.querySelector('.segment-content-usdc');
+  const bonk_segment = document.querySelector('.segment-content-bonk');
+  segments.push(sol_segment) ; segments.push(usdc_segment) ; segments.push(bonk_segment);
+  
+  const desired = withdraw_pool;
+  
+  var val = parseFloat(desired!.children[0].children[1].textContent as string)
+  withdraw_amount_indicator.textContent = `${Math.floor(val)}`
+
+})
+
+withdraw_modal_button.addEventListener('click',confirm_withdrawal);
+
+withdraw_modal_return.addEventListener('click',()=>{
+  reset_withdraw_modal();
+})
+
+
+sliderHandle2.addEventListener('mousedown', () => {
+  isDragging = true;
+});
+
+sliderHandle2.addEventListener('touchstart', (event) => {
+  isDragging = true;
+});
+
+modal3.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+modal3.addEventListener('touchend', () => {
+  isDragging = false;
+});
+
+document.addEventListener('mousedown',drag);
+document.addEventListener('touchmove',drag_touch);
+
+function drag(event:MouseEvent){
+  event.preventDefault();
+  if (isDragging) {
+    const newPosition = event.pageX - sliderBar2.getBoundingClientRect().left - sliderHandle2.offsetWidth / 2;
+    const sliderBarWidth = sliderBar2.clientWidth;
+    const sliderHandleWidth = sliderHandle2.offsetWidth;
+    const minPosition = 0;
+    const maxPosition = sliderBarWidth - sliderHandleWidth;
+    const boundedPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+    sliderHandle2.style.transform = `translateX(${boundedPosition}px)`;
+    sliderProgress2.style.width = `${boundedPosition}px`;
+    const percentage = updateValue2();
+
+    var segments = [];
+    
+    const sol_segment = document.querySelector('.segment-content-sol');
+    const usdc_segment = document.querySelector('.segment-content-usdc');
+    const bonk_segment = document.querySelector('.segment-content-bonk');
+    segments.push(sol_segment) ; segments.push(usdc_segment) ; segments.push(bonk_segment);
+    
+    const desired = withdraw_pool;
+    
+    var val = parseFloat(desired!.children[0].children[1].textContent as string)
+    //var val:any = parseFloat(wallet_info_balance_token.textContent as string)
+    withdraw_amount_indicator.textContent = `${Math.floor(val * (percentage/100))}`
+  }
+}
+
+function drag_touch(event:TouchEvent){
+  event.preventDefault();
+  if (isDragging) {
+    const newPosition = event.touches[0].pageX - sliderBar2.getBoundingClientRect().left - sliderHandle2.offsetWidth / 2;
+    const sliderBarWidth = sliderBar2.clientWidth;
+    const sliderHandleWidth = sliderHandle2.offsetWidth;
+    const minPosition = 0;
+    const maxPosition = sliderBarWidth - sliderHandleWidth;
+    const boundedPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+    sliderHandle2.style.transform = `translateX(${boundedPosition}px)`;
+    sliderProgress2.style.width = `${boundedPosition}px`;
+    const percentage = updateValue2();
+
+    var segments = [];
+    
+    const sol_segment = document.querySelector('.segment-content-sol');
+    const usdc_segment = document.querySelector('.segment-content-usdc');
+    const bonk_segment = document.querySelector('.segment-content-bonk');
+    segments.push(sol_segment) ; segments.push(usdc_segment) ; segments.push(bonk_segment);
+    
+    const desired = withdraw_pool;
+    
+    var val = parseFloat(desired!.children[0].children[1].textContent as string)
+    //var val:any = parseFloat(wallet_info_balance_token.textContent as string)
+    withdraw_amount_indicator.textContent = `${Math.floor(val * (percentage/100))}`
+  }
+}
+
+deposit_modal_return.addEventListener('click',()=>{
+  reset_deposit_modal();
+})
+
+function updateValue2(): number {
+  const transformValue = sliderHandle2.style.transform;
+  const currentPosition = parseInt(transformValue.replace(/[^\d.-]/g, ''));
+  const maxPosition = sliderBar2.clientWidth - sliderHandle.offsetWidth;
+  const percentage = Math.round(currentPosition / 68 * 100);
+  value = percentage ;
+  sliderValue2.innerText = `${value}%`;
+  return percentage;
+}
+
 sliderHandle.addEventListener('mousedown', () => {
   isDragging = true;
+});
+
+sliderHandle.addEventListener('touchstart', () => {
+  isDragging = true;
+});
+
+modal2.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+modal2.addEventListener('touchend', () => {
+  isDragging = false;
 });
 
 document.addEventListener('mousemove', (event:MouseEvent) => {
   event.preventDefault();
   if (isDragging) {
     const newPosition = event.pageX - sliderBar.getBoundingClientRect().left - sliderHandle.offsetWidth / 2;
+    const sliderBarWidth = sliderBar.clientWidth;
+    const sliderHandleWidth = sliderHandle.offsetWidth;
+    const minPosition = 0;
+    const maxPosition = sliderBarWidth - sliderHandleWidth;
+    const boundedPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+    sliderHandle.style.transform = `translateX(${boundedPosition}px)`;
+    sliderProgress.style.width = `${boundedPosition}px`;
+    const percentage = updateValue();
+    const val = parseFloat(wallet_info_balance_token.textContent as string)
+    deposit_amount_indicator.textContent = `${Math.floor(val * (percentage/100))}`
+  }
+});
+
+document.addEventListener('touchmove', (event:TouchEvent) => {
+  event.preventDefault();
+  if (isDragging) {
+    const newPosition = event.touches[0].pageX - sliderBar.getBoundingClientRect().left - sliderHandle.offsetWidth / 2;
     const sliderBarWidth = sliderBar.clientWidth;
     const sliderHandleWidth = sliderHandle.offsetWidth;
     const minPosition = 0;
@@ -551,7 +926,37 @@ async function get_deposit_transaction(){
 
   var transaction:string = '';
   const amount = parseInt(deposit_amount_indicator.textContent as string);
-  await fetch('https://saisei-server.com/get_kai_deposit_transaction', {
+  await fetch('http://192.168.1.43:3000/get_kai_deposit_transaction', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    body:JSON.stringify({
+      owner_address:owner,
+      amount:amount,
+    })})
+    .then(response => response.json())
+    .then(data => {
+      transaction = data;
+      //console.log(data);
+    })
+    .catch(error => {
+      transaction = 'failed from frontend';
+    })
+    return transaction;
+  }catch(e){
+    return 'failed';
+  }
+}
+
+//getting withdrawal transaction
+async function get_withdrawal_transaction(){
+  try{
+
+  var transaction:string = '';
+  const amount = parseInt(withdraw_amount_indicator.textContent as string);
+  await fetch('http://192.168.1.43:3000/get_kai_withdraw_transaction', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -614,7 +1019,7 @@ async function send_transaction(transaction:Transaction){
   const temp = transaction.serialize({requireAllSignatures:true,verifySignatures:true})
   const transactionBase64 = Buffer.from(temp).toString('base64');
   var sig:string = '';
-    await fetch('https://saisei-server.com/submit_solflare_transaction',{
+    await fetch('http://192.168.1.43:3000/submit_solflare_transaction',{
     method:"POST",
     headers:{
       'Content-Type': 'application/json'
@@ -638,8 +1043,7 @@ async function send_transaction(transaction:Transaction){
 async function verify_deposit_transaction(sig:string){
 
   var worked:number = 1;
-  const amount = parseInt(deposit_amount_indicator.textContent as string);
-  await fetch('https://saisei-server.com/verify_kai_deposit_transaction', {
+  await fetch('http://192.168.1.43:3000/verify_kai_deposit_transaction', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -649,6 +1053,35 @@ async function verify_deposit_transaction(sig:string){
       signature:sig,
       owner:owner,
       pool:choosen_pool
+    })})
+    .then(response => response.json())
+    .then(data => {
+      worked = data
+      //console.log(data);
+    })
+    .catch(error => {
+      worked = 0;
+    })
+    return worked;
+}
+
+async function verify_and_send_withdraw_transaction(message:string,transaction:Transaction,pool:string,wallet_type:string){
+
+  const temp = transaction.serialize({requireAllSignatures:false,verifySignatures:false})
+  const transactionBase64 = Buffer.from(temp).toString('base64');
+  
+  var worked:number = 1;
+  await fetch('http://192.168.1.43:3000/verify_and_send_withdraw_transaction', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    body:JSON.stringify({
+      serialized_transaction:transactionBase64,
+      message:message,
+      pool:pool,
+      wallet_type:wallet_type
     })})
     .then(response => response.json())
     .then(data => {
@@ -740,10 +1173,17 @@ deposit_modal_button.addEventListener('click',async()=>{
     dim('Verifying Transaction');
     const is_valid = await verify_deposit_transaction(sig);
 
-    undim('');
-    reset_deposit_modal();
-    await adjust_amounts(amount,current_pool);
-    showAlert('Transaction Approved and Successfully sent!',true,button1);
+
+    if (is_valid === 1){
+      showAlert('Transaction Approved and Successfully sent!',true,button1);
+      await adjust_amounts(amount,current_pool);
+      undim('');
+      reset_deposit_modal();
+    } else{
+      showAlert('Transaction verification failed',false,button1);
+      undim('');
+      reset_deposit_modal();
+    }
   
 });
 
@@ -755,15 +1195,18 @@ function reset_deposit_modal(){
   updateValue();
 }
 
+
 //function for adjusting amounts through the whole page
 async function adjust_amounts(amount:number,current_pool:string){
+
+  await sleep(1000);
 
   //adjusting wallet info token balance
   const prev_kai = parseFloat(wallet_info_balance_token.textContent as string);
   const new_amount = prev_kai - amount;
   wallet_info_balance_token.textContent = `${new_amount}`;
 
-  await fetch('https://saisei-server.com/get_user_deposits', {
+  await fetch('http://192.168.1.43:3000/get_user_deposits', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

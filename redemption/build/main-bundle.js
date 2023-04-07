@@ -1,1 +1,526 @@
-'use strict';const a0_0x438ee8=a0_0x339e;(function(_0x4a1ec8,_0x20c7be){const _0x10b721=a0_0x339e,_0x35783e=_0x4a1ec8();while(!![]){try{const _0x54ef1c=-parseInt(_0x10b721(0x1b8))/0x1*(-parseInt(_0x10b721(0x1fc))/0x2)+parseInt(_0x10b721(0x1e2))/0x3*(parseInt(_0x10b721(0x221))/0x4)+-parseInt(_0x10b721(0x1da))/0x5+-parseInt(_0x10b721(0x1d8))/0x6+-parseInt(_0x10b721(0x1c8))/0x7+parseInt(_0x10b721(0x205))/0x8+parseInt(_0x10b721(0x1e4))/0x9;if(_0x54ef1c===_0x20c7be)break;else _0x35783e['push'](_0x35783e['shift']());}catch(_0x4d4b03){_0x35783e['push'](_0x35783e['shift']());}}}(a0_0x1548,0xe9ed5));var __awaiter=this&&this['__awaiter']||function(_0x3f71fd,_0x83512,_0x2ba8e1,_0x393cf4){function _0x2e3815(_0x1e09e5){return _0x1e09e5 instanceof _0x2ba8e1?_0x1e09e5:new _0x2ba8e1(function(_0x21474b){_0x21474b(_0x1e09e5);});}return new(_0x2ba8e1||(_0x2ba8e1=Promise))(function(_0x3f4d41,_0xb0b7bd){const _0x51654e=a0_0x339e;function _0x34c070(_0x14773a){const _0x3bb2ea=a0_0x339e;try{_0x25d36a(_0x393cf4[_0x3bb2ea(0x1a6)](_0x14773a));}catch(_0x4ff326){_0xb0b7bd(_0x4ff326);}}function _0xb617b0(_0x4631f9){const _0x4fff2e=a0_0x339e;try{_0x25d36a(_0x393cf4[_0x4fff2e(0x1c4)](_0x4631f9));}catch(_0x2dfeac){_0xb0b7bd(_0x2dfeac);}}function _0x25d36a(_0x210a45){const _0x46b7d8=a0_0x339e;_0x210a45[_0x46b7d8(0x1e3)]?_0x3f4d41(_0x210a45['value']):_0x2e3815(_0x210a45[_0x46b7d8(0x1d0)])[_0x46b7d8(0x21a)](_0x34c070,_0xb617b0);}_0x25d36a((_0x393cf4=_0x393cf4[_0x51654e(0x1b4)](_0x3f71fd,_0x83512||[]))['next']());});};Object[a0_0x438ee8(0x1eb)](exports,a0_0x438ee8(0x1e0),{'value':!![]}),exports['set_balances']=exports[a0_0x438ee8(0x1c9)]=exports['dim']=exports[a0_0x438ee8(0x1de)]=exports[a0_0x438ee8(0x212)]=exports[a0_0x438ee8(0x1f9)]=exports['side_menu_appeared']=exports[a0_0x438ee8(0x1fb)]=exports[a0_0x438ee8(0x1aa)]=exports[a0_0x438ee8(0x208)]=exports[a0_0x438ee8(0x1c3)]=exports[a0_0x438ee8(0x1ab)]=exports[a0_0x438ee8(0x1e5)]=exports[a0_0x438ee8(0x1ed)]=exports[a0_0x438ee8(0x1c6)]=exports[a0_0x438ee8(0x222)]=exports[a0_0x438ee8(0x1ad)]=exports[a0_0x438ee8(0x1a3)]=exports[a0_0x438ee8(0x1b7)]=void 0x0;const snackbar_1=require('./snackbar'),header=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x20f)),nav=document[a0_0x438ee8(0x20e)]('header'),phantom=document[a0_0x438ee8(0x1be)]('Phantom'),solflare=document[a0_0x438ee8(0x1be)](a0_0x438ee8(0x1b1)),brave=document[a0_0x438ee8(0x1be)](a0_0x438ee8(0x20b)),slope=document['getElementById'](a0_0x438ee8(0x1d2)),return_button=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1f4)),modal=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x21e)),modal_content=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1cf)),connect_loading_ind=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1ee)),loader_text=document[a0_0x438ee8(0x20e)]('.loader-prompt'),button1=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x224)),ME_button=document['querySelectorAll'](a0_0x438ee8(0x1ce))[0x0],ME_button2=document[a0_0x438ee8(0x1c5)](a0_0x438ee8(0x1ce))[0x1],ME_menu=document['querySelector'](a0_0x438ee8(0x1cd)),side_menu_button=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x21f)),side_menu=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1b3)),side_text=document['querySelectorAll'](a0_0x438ee8(0x1ba));exports[a0_0x438ee8(0x1b7)]=document[a0_0x438ee8(0x20e)]('.connect-wallet');const disconnect_wallet_button=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1dd)),view_up_button=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1bf)),arrow_pic=document[a0_0x438ee8(0x20e)]('.up-arrow1'),clouds=document[a0_0x438ee8(0x1c5)](a0_0x438ee8(0x1bb)),wallet_info_box=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1e9)),wallet_info_balance_sol=document['querySelector'](a0_0x438ee8(0x20d));exports['wallet_info_balance_token']=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1d1));const wallet_type_text=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1b0)),wallet_type_img=document[a0_0x438ee8(0x20e)](a0_0x438ee8(0x1f2));exports[a0_0x438ee8(0x1ad)]='',exports[a0_0x438ee8(0x222)]='',exports['me_dropped']=![],exports['wallet_info_dropped']=![],exports['content_intersected']=![],exports[a0_0x438ee8(0x1ab)]=![],exports[a0_0x438ee8(0x1c3)]=null,exports[a0_0x438ee8(0x208)]=![],exports[a0_0x438ee8(0x1fb)]=window[a0_0x438ee8(0x1c2)],exports[a0_0x438ee8(0x1e7)]=![],exports[a0_0x438ee8(0x1de)]=![],console[a0_0x438ee8(0x1a7)](a0_0x438ee8(0x1a0));function sleep(_0x36af89){return new Promise(_0x2901df=>setTimeout(_0x2901df,_0x36af89));}function get_sol_balance(){return __awaiter(this,void 0x0,void 0x0,function*(){const _0x3439ee=a0_0x339e;var _0x20b94c=0x0;return yield fetch(_0x3439ee(0x211),{'method':'POST','headers':{'Content-Type':_0x3439ee(0x1d7)},'mode':_0x3439ee(0x1c7),'body':JSON[_0x3439ee(0x1f1)]({'address':exports[_0x3439ee(0x222)]})})[_0x3439ee(0x21a)](_0x163926=>_0x163926['json']())[_0x3439ee(0x21a)](_0x39065a=>{_0x20b94c=_0x39065a;})[_0x3439ee(0x1c0)](_0x3c2cee=>{_0x20b94c=0x0;}),_0x20b94c;});};function get_kai_balance(){return __awaiter(this,void 0x0,void 0x0,function*(){const _0x2b39a5=a0_0x339e;var _0x2c31dc=0x0;return yield fetch(_0x2b39a5(0x1df),{'method':'POST','headers':{'Content-Type':_0x2b39a5(0x1d7)},'mode':_0x2b39a5(0x1c7),'body':JSON[_0x2b39a5(0x1f1)]({'address':exports['owner']})})[_0x2b39a5(0x21a)](_0x46abf5=>_0x46abf5[_0x2b39a5(0x1bc)]())[_0x2b39a5(0x21a)](_0x26a871=>{_0x2c31dc=_0x26a871;})[_0x2b39a5(0x1c0)](_0x5a6350=>{_0x2c31dc=0x0;}),_0x2c31dc;});}function a0_0x339e(_0x9e7e80,_0x1ab9ec){const _0x154865=a0_0x1548();return a0_0x339e=function(_0x339e5f,_0x136d3d){_0x339e5f=_0x339e5f-0x1a0;let _0x2e392f=_0x154865[_0x339e5f];return _0x2e392f;},a0_0x339e(_0x9e7e80,_0x1ab9ec);};function dim(_0x2da92d){const _0x48318e=a0_0x438ee8;modal_content[_0x48318e(0x1b2)]['display']=_0x48318e(0x1fd),modal['style']['display']=_0x48318e(0x213),connect_loading_ind[_0x48318e(0x1b2)][_0x48318e(0x1a2)]=_0x48318e(0x215),loader_text[_0x48318e(0x1b2)]['display']='block',loader_text[_0x48318e(0x20c)]=_0x2da92d;}exports['dim']=dim;function undim(_0x50d029){const _0x4982b3=a0_0x438ee8;modal_content[_0x4982b3(0x1b2)][_0x4982b3(0x1a2)]=_0x4982b3(0x215),modal[_0x4982b3(0x1b2)]['display']='none',connect_loading_ind[_0x4982b3(0x1b2)]['display']=_0x4982b3(0x1fd),loader_text[_0x4982b3(0x1b2)][_0x4982b3(0x1a2)]=_0x4982b3(0x1fd),loader_text[_0x4982b3(0x20c)]='';}exports[a0_0x438ee8(0x1c9)]=undim,setTimeout(()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){dim(''),yield sleep(0x3e8),undim('');}),0xa),header[a0_0x438ee8(0x1dc)]('mouseover',()=>{const _0x4c9512=a0_0x438ee8;window[_0x4c9512(0x1c2)]>=0x64&&(side_menu[_0x4c9512(0x1b2)][_0x4c9512(0x1ea)]=_0x4c9512(0x1fa));}),header[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1b9),()=>{const _0x29c00e=a0_0x438ee8;window[_0x29c00e(0x1c2)]>=0x64&&(side_menu[_0x29c00e(0x1b2)]['marginTop']=_0x29c00e(0x1a4));}),document[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1ae),_0x4ab81b=>{const _0x491eac=a0_0x438ee8,_0x2d7582=ME_menu[_0x491eac(0x21b)](_0x4ab81b[_0x491eac(0x1e6)]),_0x3f3f52=ME_button[_0x491eac(0x21b)](_0x4ab81b[_0x491eac(0x1e6)])||ME_button2['contains'](_0x4ab81b['target']),_0xd8d9cf=ME_menu[_0x491eac(0x1a9)][_0x491eac(0x1d0)],_0x16d1eb=wallet_info_box[_0x491eac(0x21b)](_0x4ab81b['target']),_0x3f5486=exports[_0x491eac(0x1b7)][_0x491eac(0x21b)](_0x4ab81b['target']);!_0x16d1eb&&exports['wallet_info_dropped']&&!_0x3f5486&&(wallet_info_box['classList'][_0x491eac(0x1e8)](_0x491eac(0x219)),exports['wallet_info_dropped']=![]),!_0x2d7582&&exports[_0x491eac(0x1c6)]&&!_0x3f3f52&&(ME_menu[_0x491eac(0x1a9)][_0x491eac(0x1e8)]('dropdown-ME-visible'),exports[_0x491eac(0x1c6)]=![]);}),window[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1e1),function(){const _0x44043a=a0_0x438ee8;if(window[_0x44043a(0x1c2)]>=0x64&&!exports[_0x44043a(0x1e5)])nav['classList']['add'](_0x44043a(0x1c1)),exports[_0x44043a(0x1e5)]=!![],side_menu[_0x44043a(0x1b2)][_0x44043a(0x1ea)]='40px';else window['scrollY']<0x64&&exports[_0x44043a(0x1e5)]&&(side_menu[_0x44043a(0x1b2)][_0x44043a(0x1ea)]=_0x44043a(0x1fa),nav[_0x44043a(0x1a9)][_0x44043a(0x1e8)](_0x44043a(0x1c1)),exports[_0x44043a(0x1e5)]=![]);if(window[_0x44043a(0x1c2)]>=0x28a&&!exports[_0x44043a(0x1ab)])view_up_button[_0x44043a(0x1b2)]['display']=_0x44043a(0x215),exports['view_button_pop']=!![];else window[_0x44043a(0x1c2)]<0x28a&&exports['view_button_pop']&&(view_up_button['style'][_0x44043a(0x1a2)]='none',exports[_0x44043a(0x1ab)]=![]);const _0x2a7daf=window[_0x44043a(0x1c2)];if(_0x2a7daf>exports[_0x44043a(0x1fb)]){for(var _0x581583=0x0;_0x581583<clouds[_0x44043a(0x1b5)];_0x581583++){const _0x9f9e62=clouds[_0x581583];_0x9f9e62[_0x44043a(0x1a9)]['add'](_0x44043a(0x1a1));}clearTimeout(exports[_0x44043a(0x1aa)]),exports[_0x44043a(0x1aa)]=setTimeout(()=>{const _0x428cf8=_0x44043a;for(var _0x9c04b5=0x0;_0x9c04b5<clouds['length'];_0x9c04b5++){const _0x3b9c74=clouds[_0x9c04b5];_0x3b9c74[_0x428cf8(0x1a9)][_0x428cf8(0x1af)](_0x428cf8(0x223)),_0x3b9c74[_0x428cf8(0x1a9)][_0x428cf8(0x1e8)](_0x428cf8(0x1a1));}setTimeout(()=>{const _0x260227=_0x428cf8;for(var _0x110996=0x0;_0x110996<clouds[_0x260227(0x1b5)];_0x110996++){const _0x2a1b09=clouds[_0x110996];_0x2a1b09[_0x260227(0x1a9)][_0x260227(0x1e8)]('clouds-not-freefall');}},0x1f4);},0x12c);}exports[_0x44043a(0x1fb)]=window[_0x44043a(0x1c2)];});function check_wallet(){const _0x53cdc0=a0_0x438ee8;if(exports[_0x53cdc0(0x1ad)]===_0x53cdc0(0x21c))return!window[_0x53cdc0(0x1bd)]||!window[_0x53cdc0(0x1bd)][_0x53cdc0(0x206)]?((0x0,snackbar_1[_0x53cdc0(0x1d9)])(_0x53cdc0(0x218),![],button1),![]):!![];if(exports[_0x53cdc0(0x1ad)]===_0x53cdc0(0x1d6))return!window[_0x53cdc0(0x1d6)]||!window[_0x53cdc0(0x1d6)]['isSolflare']?((0x0,snackbar_1['showAlert'])(_0x53cdc0(0x1f8),![],button1),![]):!![];if(exports[_0x53cdc0(0x1ad)]===_0x53cdc0(0x1d3))return!window[_0x53cdc0(0x1b6)]||!window[_0x53cdc0(0x1b6)][_0x53cdc0(0x20a)]?((0x0,snackbar_1[_0x53cdc0(0x1d9)])('Brave\x20Wallet\x20is\x20not\x20installed!',![],button1),![]):!![];if(exports[_0x53cdc0(0x1ad)]==='slope')return!window['slope']?((0x0,snackbar_1[_0x53cdc0(0x1d9)])(_0x53cdc0(0x1f3),![],button1),![]):!![];}function connect_wallet(){return __awaiter(this,void 0x0,void 0x0,function*(){const _0x2021cd=a0_0x339e;if(exports[_0x2021cd(0x1ad)]===_0x2021cd(0x21c))try{return yield window['solana'][_0x2021cd(0x204)]()[_0x2021cd(0x21a)](_0x2b8b30=>{const _0x233d61=_0x2021cd;exports[_0x233d61(0x222)]=window[_0x233d61(0x1bd)][_0x233d61(0x202)][_0x233d61(0x1ec)](),(0x0,snackbar_1[_0x233d61(0x1d9)])(_0x233d61(0x209),!![],button1);}),!![];}catch(_0x4c9f0c){return console[_0x2021cd(0x1a7)](_0x4c9f0c),(0x0,snackbar_1[_0x2021cd(0x1d9)])(_0x2021cd(0x207),![],button1),![];}if(exports[_0x2021cd(0x1ad)]===_0x2021cd(0x1d3))try{return yield window[_0x2021cd(0x1bd)][_0x2021cd(0x204)]()['then'](_0x1f7a31=>{const _0xe639ec=_0x2021cd;exports[_0xe639ec(0x222)]=window['solana'][_0xe639ec(0x202)][_0xe639ec(0x1ec)](),(0x0,snackbar_1[_0xe639ec(0x1d9)])('Brave\x20Wallet\x20successfully\x20connected!',!![],button1);}),!![];}catch(_0x3d3165){return console[_0x2021cd(0x1a7)](_0x3d3165),(0x0,snackbar_1[_0x2021cd(0x1d9)])('Failed\x20to\x20connect\x20to\x20Brave\x20Wallet!',![],button1),![];}if(exports[_0x2021cd(0x1ad)]==='solflare')try{return yield window[_0x2021cd(0x1d6)]['connect']()[_0x2021cd(0x21a)](_0x34b375=>{const _0x1f6c88=_0x2021cd;exports[_0x1f6c88(0x222)]=window[_0x1f6c88(0x1d6)][_0x1f6c88(0x202)][_0x1f6c88(0x1ec)](),(0x0,snackbar_1[_0x1f6c88(0x1d9)])('Solflare\x20Wallet\x20successfully\x20connected!',!![],button1);}),!![];}catch(_0x4e424c){return console[_0x2021cd(0x1a7)](_0x4e424c),(0x0,snackbar_1[_0x2021cd(0x1d9)])('Failed\x20to\x20connect\x20to\x20Solflare\x20Wallet!',![],button1),![];}if(exports[_0x2021cd(0x1ad)]===_0x2021cd(0x1ac))try{const _0x3011dd=new window[(_0x2021cd(0x1d2))]();var _0x56785=![];return yield _0x3011dd[_0x2021cd(0x204)]()[_0x2021cd(0x21a)](_0x4eb4b9=>{const _0x304356=_0x2021cd;_0x4eb4b9['msg']!='ok'?_0x56785=!![]:exports[_0x304356(0x222)]=_0x4eb4b9[_0x304356(0x1ff)][_0x304356(0x202)];}),_0x56785?((0x0,snackbar_1[_0x2021cd(0x1d9)])(_0x2021cd(0x1a8),![],button1),![]):((0x0,snackbar_1[_0x2021cd(0x1d9)])(_0x2021cd(0x201),!![],button1),!![]);}catch(_0x7d2b92){return console[_0x2021cd(0x1a7)](_0x7d2b92),(0x0,snackbar_1[_0x2021cd(0x1d9)])(_0x2021cd(0x1a8),![],button1),![];}});}function main(){return __awaiter(this,void 0x0,void 0x0,function*(){const _0xc8255e=a0_0x339e;dim('');const _0x30e465=check_wallet();if(!_0x30e465){console[_0xc8255e(0x1a7)]('checking\x20installation'),modal_content[_0xc8255e(0x1b2)]['display']='block',connect_loading_ind[_0xc8255e(0x1b2)][_0xc8255e(0x1a2)]=_0xc8255e(0x1fd);return;}dim(_0xc8255e(0x220));const _0x4db45f=yield connect_wallet();if(!_0x4db45f){dim(''),modal_content[_0xc8255e(0x1b2)][_0xc8255e(0x1a2)]='block',connect_loading_ind[_0xc8255e(0x1b2)]['display']='none';return;}else{try{window['solana']['on'](_0xc8255e(0x1a5),()=>{const _0x50b46c=_0xc8255e;location[_0x50b46c(0x21d)]();});}catch(_0x3f27ee){}try{window[_0xc8255e(0x1d6)]['on'](_0xc8255e(0x1a5),()=>{const _0x8ddb51=_0xc8255e;location[_0x8ddb51(0x21d)]();});}catch(_0x42f507){}undim('');const _0x26000b=exports['owner'][_0xc8255e(0x1cb)](0x0,0x6)+'..'+'&#160&#160&#160&#160▾';exports[_0xc8255e(0x1b7)][_0xc8255e(0x20c)]=_0x26000b,modal_content[_0xc8255e(0x1b2)][_0xc8255e(0x1a2)]='block',exports[_0xc8255e(0x1b7)][_0xc8255e(0x1f5)](_0xc8255e(0x1ae),show_connect_modal),exports[_0xc8255e(0x1b7)][_0xc8255e(0x1dc)](_0xc8255e(0x1ae),show_wallet_info),disconnect_wallet_button['style'][_0xc8255e(0x1a2)]=_0xc8255e(0x213);return;}});}const show_connect_modal=()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x5554f0=a0_0x438ee8;modal[_0x5554f0(0x1b2)][_0x5554f0(0x1a2)]=_0x5554f0(0x213);});function set_balances(){return __awaiter(this,void 0x0,void 0x0,function*(){const _0x446ea9=a0_0x339e;if(exports['wallet_info_viewed'])return;const _0x23f77c=yield get_sol_balance(),_0x45a2f0=yield get_kai_balance();wallet_info_balance_sol['textContent']=(''+_0x23f77c/0x3b9aca00)['substring'](0x0,0x6),exports['wallet_info_balance_token'][_0x446ea9(0x1f7)]=(''+_0x45a2f0)['substring'](0x0,0x9),console['log'](_0x23f77c),exports['wallet_info_viewed']=!![];});}exports[a0_0x438ee8(0x214)]=set_balances;function set_wallet_meta(){const _0x4e4e2b=a0_0x438ee8;if(exports['wallet_type']==='phantom')wallet_type_img['src']=_0x4e4e2b(0x1fe);else{if(exports[_0x4e4e2b(0x1ad)]===_0x4e4e2b(0x1d6))wallet_type_img[_0x4e4e2b(0x1ef)]=_0x4e4e2b(0x217);else{if(exports[_0x4e4e2b(0x1ad)]===_0x4e4e2b(0x1ac))wallet_type_img[_0x4e4e2b(0x1ef)]=_0x4e4e2b(0x203);else exports[_0x4e4e2b(0x1ad)]==='brave'&&(wallet_type_img['src']=_0x4e4e2b(0x1ca));}}wallet_type_text[_0x4e4e2b(0x1f7)]=exports[_0x4e4e2b(0x1ad)];}const show_wallet_info=()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){setTimeout(()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x1bcf12=a0_0x339e;!exports[_0x1bcf12(0x1ed)]?(wallet_info_box[_0x1bcf12(0x1a9)][_0x1bcf12(0x1af)](_0x1bcf12(0x219)),exports[_0x1bcf12(0x1ed)]=!![]):(wallet_info_box[_0x1bcf12(0x1a9)]['remove']('dropdown-wallet-info-visible'),exports['wallet_info_dropped']=![]),set_wallet_meta(),yield set_balances();}),0x64);});exports[a0_0x438ee8(0x1b7)][a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1ae),show_connect_modal),disconnect_wallet_button['addEventListener'](a0_0x438ee8(0x1ae),()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x1e2586=a0_0x438ee8;location[_0x1e2586(0x21d)]();})),phantom[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1ae),()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x479993=a0_0x438ee8;exports['wallet_type']=_0x479993(0x21c),yield main();})),solflare[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1ae),()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x260199=a0_0x438ee8;exports[_0x260199(0x1ad)]='solflare',yield main();})),brave[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1ae),()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x790e0f=a0_0x438ee8;exports['wallet_type']=_0x790e0f(0x1d3),yield main();})),slope[a0_0x438ee8(0x1dc)]('click',()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x1c3cb1=a0_0x438ee8;exports[_0x1c3cb1(0x1ad)]=_0x1c3cb1(0x1ac),yield main();})),return_button[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1ae),function(_0x249fe9){const _0x1c4b4b=a0_0x438ee8;modal[_0x1c4b4b(0x1b2)][_0x1c4b4b(0x1a2)]=_0x1c4b4b(0x1fd);}),ME_button[a0_0x438ee8(0x1dc)]('click',_0x437d1a=>{setTimeout(()=>{const _0x20e1b4=a0_0x339e;!exports[_0x20e1b4(0x1c6)]?(ME_menu['classList']['add']('dropdown-ME-visible'),exports[_0x20e1b4(0x1c6)]=!![]):(ME_menu[_0x20e1b4(0x1a9)]['remove'](_0x20e1b4(0x1d4)),exports['me_dropped']=![]);},0x64);}),ME_button2[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1ae),_0x443c76=>{setTimeout(()=>{const _0x2b0101=a0_0x339e;!exports[_0x2b0101(0x1c6)]?(ME_menu[_0x2b0101(0x1a9)][_0x2b0101(0x1af)](_0x2b0101(0x1d4)),exports[_0x2b0101(0x1c6)]=!![]):(ME_menu['classList']['remove'](_0x2b0101(0x1d4)),exports[_0x2b0101(0x1c6)]=![]);},0x64);});const side_menu_event=()=>{const _0x42ba8b=a0_0x438ee8;if(!exports['side_menu_appeared'])exports[_0x42ba8b(0x1e7)]=!![],side_menu[_0x42ba8b(0x1a9)][_0x42ba8b(0x1af)](_0x42ba8b(0x216)),side_menu_button[_0x42ba8b(0x1f5)](_0x42ba8b(0x1ae),side_menu_event),setTimeout(()=>__awaiter(void 0x0,void 0x0,void 0x0,function*(){const _0x4ddaf3=_0x42ba8b;for(var _0x329991=0x0;_0x329991<side_text[_0x4ddaf3(0x1b5)];_0x329991++){yield sleep(0x64);const _0x3c6aa8=side_text[_0x329991];_0x3c6aa8[_0x4ddaf3(0x1a9)][_0x4ddaf3(0x1af)](_0x4ddaf3(0x1db));}side_menu_button[_0x4ddaf3(0x1dc)](_0x4ddaf3(0x1ae),side_menu_event);}),0x12c);else{exports[_0x42ba8b(0x1e7)]=![],side_menu_button[_0x42ba8b(0x1f5)](_0x42ba8b(0x1ae),side_menu_event);for(var _0x66b85f=0x0;_0x66b85f<side_text[_0x42ba8b(0x1b5)];_0x66b85f++){const _0x5d452f=side_text[_0x66b85f];_0x5d452f[_0x42ba8b(0x1a9)][_0x42ba8b(0x1e8)]('text-side-appear');}setTimeout(()=>{const _0x16af44=_0x42ba8b;side_menu['classList']['remove'](_0x16af44(0x216)),side_menu_button[_0x16af44(0x1dc)](_0x16af44(0x1ae),side_menu_event);},0x12c);}};function a0_0x1548(){const _0x4f0a09=['https://saisei-server.com/get_kai','__esModule','scroll','12cGHyVk','done','43112322olyNbD','content_intersected','target','side_menu_appeared','remove','.dropdown-wallet-info','marginTop','defineProperty','toString','wallet_info_dropped','.loader--style8','src','smooth','stringify','.wallet-type-logo','Slope\x20Wallet\x20is\x20not\x20installed!','#quit','removeEventListener','nextSibling','textContent','Solflare\x20Wallet\x20is\x20not\x20installed!','menu_appear_id','50px','prevScrollPos','135062qKZgNs','none','./assets/phantom.svg','data','cssText','Slope\x20Wallet\x20successfully\x20connected!','publicKey','./assets/slope.svg','connect','5121152OjwgId','isPhantom','Failed\x20to\x20connect\x20to\x20Phantom\x20Wallet!','is_arrow_animating','Phantom\x20Wallet\x20successfully\x20connected!','isBraveWallet','Brave','innerHTML','.wallet-info-balance-sol','querySelector','header','className','https://saisei-server.com/get_balance','menu_disappear_id','flex','set_balances','block','side-menu-appear','./assets/solflare.svg','Phantom\x20Wallet\x20is\x20not\x20installed!','dropdown-wallet-info-visible','then','contains','phantom','reload','.modal1','.menu-button','A\x20pop-up\x20should\x20appear\x20from<br/>your\x20wallet\x20extension\x20to\x20connect.','151188nmCxkN','owner','clouds-not-freefall','.button1','test','clouds-freefall','display','wallet_info_balance_token','40px','accountChanged','next','log','Failed\x20to\x20connect\x20to\x20Slope\x20Wallet!','classList','scrollTimeout','view_button_pop','slope','wallet_type','click','add','.wallet-type-text','Solflare','style','.side-menu','apply','length','braveSolana','connect_wallet_button','1vKQDyu','mouseout','.text-side','.clouds','json','solana','getElementById','.up-arrow-container','catch','scrolled-to-content','scrollY','temp_id','throw','querySelectorAll','me_dropped','cors','8844850pVAimp','undim','./assets/Brave.svg','substring','parentNode','.dropdown-ME','.me-button','.modal1-box','value','.wallet-info-balance-token','Slope','brave','dropdown-ME-visible','mouseover','solflare','application/json','11085198gmgFfd','showAlert','7899365WlUccx','text-side-appear','addEventListener','.disconnect-wallet','wallet_info_viewed'];a0_0x1548=function(){return _0x4f0a09;};return a0_0x1548();}side_menu_button[a0_0x438ee8(0x1dc)]('click',side_menu_event),view_up_button[a0_0x438ee8(0x1dc)]('click',()=>{const _0x45024b=a0_0x438ee8;window['scrollTo']({'top':0x0,'behavior':_0x45024b(0x1f0)});}),view_up_button[a0_0x438ee8(0x1dc)](a0_0x438ee8(0x1d5),()=>{const _0x1baec4=a0_0x438ee8;if(exports[_0x1baec4(0x208)])return;exports[_0x1baec4(0x208)]=!![];var _0x28672e=0x0;exports[_0x1baec4(0x1c3)]=setInterval(()=>{const _0x32aa22=_0x1baec4;_0x28672e+=0x1;const _0x224827=document['createElement']('img');_0x224827[_0x32aa22(0x1ef)]=arrow_pic['src'],_0x224827[_0x32aa22(0x1b2)][_0x32aa22(0x200)]=arrow_pic[_0x32aa22(0x1b2)][_0x32aa22(0x200)],_0x224827['className']=arrow_pic[_0x32aa22(0x210)],arrow_pic[_0x32aa22(0x1cc)]['insertBefore'](_0x224827,arrow_pic[_0x32aa22(0x1f6)]),_0x224827[_0x32aa22(0x1a9)][_0x32aa22(0x1af)]('arrow-float-up'),setTimeout(()=>{const _0x445116=_0x32aa22;_0x224827[_0x445116(0x1e8)]();},0x1f4),_0x28672e===0x3&&(clearInterval(exports[_0x32aa22(0x1c3)]),exports[_0x32aa22(0x208)]=![]);},0x1f4);});
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.set_balances = exports.undim = exports.dim = exports.wallet_info_viewed = exports.menu_disappear_id = exports.menu_appear_id = exports.side_menu_appeared = exports.prevScrollPos = exports.scrollTimeout = exports.is_arrow_animating = exports.temp_id = exports.view_button_pop = exports.content_intersected = exports.wallet_info_dropped = exports.me_dropped = exports.owner = exports.wallet_type = exports.wallet_info_balance_token = exports.connect_wallet_button = void 0;
+const snackbar_1 = require("./snackbar");
+const header = document.querySelector('header');
+const nav = document.querySelector('header');
+const phantom = document.getElementById('Phantom');
+const solflare = document.getElementById('Solflare');
+const brave = document.getElementById('Brave');
+const slope = document.getElementById('Slope');
+const return_button = document.querySelector('#quit');
+const modal = document.querySelector('.modal1');
+const modal_content = document.querySelector('.modal1-box');
+const connect_loading_ind = document.querySelector('.loader--style8');
+const loader_text = document.querySelector('.loader-prompt');
+const button1 = document.querySelector('.button1');
+const ME_button = document.querySelectorAll('.me-button')[0];
+const ME_button2 = document.querySelectorAll('.me-button')[1];
+const ME_menu = document.querySelector('.dropdown-ME');
+//side menu elements
+const side_menu_button = document.querySelector('.menu-button');
+const side_menu = document.querySelector('.side-menu');
+const side_text = document.querySelectorAll('.text-side');
+exports.connect_wallet_button = document.querySelector('.connect-wallet');
+const disconnect_wallet_button = document.querySelector('.disconnect-wallet');
+const view_up_button = document.querySelector('.up-arrow-container');
+const arrow_pic = document.querySelector('.up-arrow1');
+const clouds = document.querySelectorAll('.clouds');
+const wallet_info_box = document.querySelector('.dropdown-wallet-info');
+const wallet_info_balance_sol = document.querySelector('.wallet-info-balance-sol');
+exports.wallet_info_balance_token = document.querySelector('.wallet-info-balance-token');
+const wallet_type_text = document.querySelector('.wallet-type-text');
+const wallet_type_img = document.querySelector('.wallet-type-logo');
+//global state and control variables
+exports.wallet_type = '';
+exports.owner = '';
+exports.me_dropped = false;
+exports.wallet_info_dropped = false;
+exports.content_intersected = false;
+exports.view_button_pop = false;
+exports.temp_id = null;
+exports.is_arrow_animating = false;
+exports.prevScrollPos = window.scrollY;
+exports.side_menu_appeared = false;
+exports.wallet_info_viewed = false;
+console.log('test');
+//sleep function
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+//getting connected wallet sol and sushi balance
+function get_sol_balance() {
+    return __awaiter(this, void 0, void 0, function* () {
+        var res = 0;
+        yield fetch('http://192.168.1.43:3000/get_balance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                address: exports.owner,
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+            res = data;
+            //console.log(data);
+        })
+            .catch(error => {
+            res = 0;
+        });
+        return res;
+    });
+}
+;
+function get_kai_balance() {
+    return __awaiter(this, void 0, void 0, function* () {
+        var res = 0;
+        yield fetch('http://192.168.1.43:3000/get_kai', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                address: exports.owner,
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+            res = data;
+            //console.log(data);
+        })
+            .catch(error => {
+            res = 0;
+        });
+        return res;
+    });
+}
+;
+function dim(content) {
+    modal_content.style.display = 'none';
+    modal.style.display = 'flex';
+    connect_loading_ind.style.display = 'block';
+    loader_text.style.display = 'block';
+    loader_text.innerHTML = content;
+}
+exports.dim = dim;
+function undim(content) {
+    modal_content.style.display = 'block';
+    modal.style.display = 'none';
+    connect_loading_ind.style.display = 'none';
+    loader_text.style.display = 'none';
+    loader_text.innerHTML = '';
+}
+exports.undim = undim;
+setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+    dim('');
+    yield sleep(1000);
+    undim('');
+}), 10);
+//syncing header and side menu
+header.addEventListener('mouseover', () => {
+    if (window.scrollY >= 100) {
+        side_menu.style.marginTop = '50px';
+    }
+});
+header.addEventListener('mouseout', () => {
+    if (window.scrollY >= 100) {
+        side_menu.style.marginTop = '40px';
+    }
+});
+//adding global click event listeners for UX and click logic
+document.addEventListener('click', (event) => {
+    // check if the target element of the event is inside the dropdown menu or not
+    const isClickedInsideDropdownMenu = ME_menu.contains(event.target);
+    const isClickedInsidebutton = ME_button.contains(event.target) || ME_button2.contains(event.target);
+    const temp = ME_menu.classList.value;
+    const isClickedinsidewalletinfo = wallet_info_box.contains(event.target);
+    const isClickedinsidewalletinfobutton = exports.connect_wallet_button.contains(event.target);
+    // if the click is outside of the wallet-info-box, hide it
+    if (!isClickedinsidewalletinfo && exports.wallet_info_dropped && !isClickedinsidewalletinfobutton) {
+        wallet_info_box.classList.remove('dropdown-wallet-info-visible');
+        exports.wallet_info_dropped = false;
+    }
+    // if the click is outside of the dropdown menu, hide it
+    if (!isClickedInsideDropdownMenu && exports.me_dropped && !isClickedInsidebutton) {
+        ME_menu.classList.remove('dropdown-ME-visible');
+        exports.me_dropped = false;
+    }
+});
+//scroll top nav dim and clouds/brand animation
+window.addEventListener('scroll', function () {
+    if (window.scrollY >= 100 && !exports.content_intersected) {
+        nav.classList.add('scrolled-to-content');
+        exports.content_intersected = true;
+        side_menu.style.marginTop = '40px';
+    }
+    else if (window.scrollY < 100 && exports.content_intersected) {
+        side_menu.style.marginTop = '50px';
+        nav.classList.remove('scrolled-to-content');
+        exports.content_intersected = false;
+    }
+    if (window.scrollY >= 650 && !exports.view_button_pop) {
+        view_up_button.style.display = 'block';
+        exports.view_button_pop = true;
+    }
+    else if (window.scrollY < 650 && exports.view_button_pop) {
+        view_up_button.style.display = 'none';
+        exports.view_button_pop = false;
+    }
+    //we animate the clouds only if the user scrolls down 
+    const currentScrollPos = window.scrollY;
+    if (currentScrollPos > exports.prevScrollPos) {
+        for (var i = 0; i < clouds.length; i++) {
+            const cloud = clouds[i];
+            cloud.classList.add('clouds-freefall');
+        }
+        clearTimeout(exports.scrollTimeout);
+        exports.scrollTimeout = setTimeout(() => {
+            for (var i = 0; i < clouds.length; i++) {
+                const cloud = clouds[i];
+                cloud.classList.add("clouds-not-freefall");
+                cloud.classList.remove("clouds-freefall");
+                //cloud.classList.remove("clouds-not-freefall");
+            }
+            setTimeout(() => {
+                for (var i = 0; i < clouds.length; i++) {
+                    const cloud = clouds[i];
+                    cloud.classList.remove("clouds-not-freefall");
+                }
+            }, 500);
+        }, 300);
+    }
+    exports.prevScrollPos = window.scrollY;
+});
+//checking if requested type is installed or not
+function check_wallet() {
+    //phantom check
+    if (exports.wallet_type === 'phantom') {
+        if (!window.solana || !window.solana.isPhantom) {
+            (0, snackbar_1.showAlert)('Phantom Wallet is not installed!', false, button1);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    //solflare check
+    if (exports.wallet_type === 'solflare') {
+        if (!window.solflare || !window.solflare.isSolflare) {
+            (0, snackbar_1.showAlert)('Solflare Wallet is not installed!', false, button1);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    //brave wallet check
+    if (exports.wallet_type === 'brave') {
+        if (!window.braveSolana || !window.braveSolana.isBraveWallet) {
+            (0, snackbar_1.showAlert)('Brave Wallet is not installed!', false, button1);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    //slope wallet check
+    if (exports.wallet_type === 'slope') {
+        if (!window.slope) {
+            (0, snackbar_1.showAlert)('Slope Wallet is not installed!', false, button1);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+}
+//connecting to the wallet after checking it's installation
+function connect_wallet() {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (exports.wallet_type === 'phantom') {
+            try {
+                yield window.solana.connect().then((obje) => {
+                    exports.owner = window.solana.publicKey.toString();
+                    (0, snackbar_1.showAlert)('Phantom Wallet successfully connected!', true, button1);
+                });
+                return true;
+            }
+            catch (e) {
+                console.log(e);
+                (0, snackbar_1.showAlert)('Failed to connect to Phantom Wallet!', false, button1);
+                return false;
+            }
+        }
+        if (exports.wallet_type === 'brave') {
+            try {
+                yield window.solana.connect().then((obje) => {
+                    exports.owner = window.solana.publicKey.toString();
+                    (0, snackbar_1.showAlert)('Brave Wallet successfully connected!', true, button1);
+                });
+                return true;
+            }
+            catch (e) {
+                console.log(e);
+                (0, snackbar_1.showAlert)('Failed to connect to Brave Wallet!', false, button1);
+                return false;
+            }
+        }
+        if (exports.wallet_type === 'solflare') {
+            try {
+                yield window.solflare.connect().then((obje) => {
+                    exports.owner = window.solflare.publicKey.toString();
+                    (0, snackbar_1.showAlert)('Solflare Wallet successfully connected!', true, button1);
+                });
+                return true;
+            }
+            catch (e) {
+                console.log(e);
+                (0, snackbar_1.showAlert)('Failed to connect to Solflare Wallet!', false, button1);
+                return false;
+            }
+        }
+        if (exports.wallet_type === 'slope') {
+            try {
+                const slope_obj = new window.Slope();
+                var failed = false;
+                yield slope_obj.connect().then((obje) => {
+                    if (obje.msg != 'ok') {
+                        failed = true;
+                    }
+                    else {
+                        exports.owner = obje.data.publicKey;
+                    }
+                });
+                if (failed) {
+                    (0, snackbar_1.showAlert)('Failed to connect to Slope Wallet!', false, button1);
+                    return false;
+                }
+                else {
+                    (0, snackbar_1.showAlert)('Slope Wallet successfully connected!', true, button1);
+                    return true;
+                }
+            }
+            catch (e) {
+                console.log(e);
+                (0, snackbar_1.showAlert)('Failed to connect to Slope Wallet!', false, button1);
+                return false;
+            }
+        }
+    });
+}
+function main() {
+    return __awaiter(this, void 0, void 0, function* () {
+        dim('');
+        //checking selected wallet
+        const is_installed = check_wallet();
+        if (!is_installed) {
+            console.log('checking installation');
+            modal_content.style.display = 'block';
+            connect_loading_ind.style.display = 'none';
+            //return early from the function
+            return;
+        }
+        dim('A pop-up should appear from<br/>your wallet extension to connect.');
+        //else we connect to the selected wallet
+        const connected = yield connect_wallet();
+        if (!connected) {
+            dim('');
+            modal_content.style.display = 'block';
+            connect_loading_ind.style.display = 'none';
+            //return early from the function
+            return;
+        }
+        else {
+            try {
+                window.solana.on('accountChanged', () => {
+                    location.reload();
+                });
+            }
+            catch (_a) { }
+            try {
+                window.solflare.on('accountChanged', () => {
+                    location.reload();
+                });
+            }
+            catch (_b) { }
+            undim('');
+            const display_key = exports.owner.substring(0, 6) + '..' + '&#160&#160&#160&#160▾';
+            exports.connect_wallet_button.innerHTML = display_key;
+            modal_content.style.display = 'block';
+            //setting appropriate event listener for wallet button
+            exports.connect_wallet_button.removeEventListener('click', show_connect_modal);
+            exports.connect_wallet_button.addEventListener('click', show_wallet_info);
+            disconnect_wallet_button.style.display = 'flex';
+            return;
+        }
+    });
+}
+//connect wallet button click
+const show_connect_modal = () => __awaiter(void 0, void 0, void 0, function* () {
+    modal.style.display = 'flex';
+});
+//setting balances for wallet info box
+function set_balances() {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (exports.wallet_info_viewed) {
+            return;
+        }
+        const sol_balance = yield get_sol_balance();
+        const kai_balance = yield get_kai_balance();
+        wallet_info_balance_sol.textContent = `${sol_balance / 1000000000}`.substring(0, 6);
+        exports.wallet_info_balance_token.textContent = `${kai_balance}`.substring(0, 9);
+        console.log(sol_balance);
+        exports.wallet_info_viewed = true;
+    });
+}
+exports.set_balances = set_balances;
+//set wallet meta-stuff
+function set_wallet_meta() {
+    if (exports.wallet_type === 'phantom') {
+        wallet_type_img.src = './assets/phantom.svg';
+    }
+    else if (exports.wallet_type === 'solflare') {
+        wallet_type_img.src = './assets/solflare.svg';
+    }
+    else if (exports.wallet_type === 'slope') {
+        wallet_type_img.src = './assets/slope.svg';
+    }
+    else if (exports.wallet_type === 'brave') {
+        wallet_type_img.src = './assets/Brave.svg';
+    }
+    wallet_type_text.textContent = exports.wallet_type;
+}
+//showing the wallet info-box for wallet info box
+const show_wallet_info = () => __awaiter(void 0, void 0, void 0, function* () {
+    setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+        if (!exports.wallet_info_dropped) {
+            wallet_info_box.classList.add('dropdown-wallet-info-visible');
+            exports.wallet_info_dropped = true;
+        }
+        else {
+            wallet_info_box.classList.remove('dropdown-wallet-info-visible');
+            exports.wallet_info_dropped = false;
+        }
+        set_wallet_meta();
+        yield set_balances();
+    }), 100);
+});
+exports.connect_wallet_button.addEventListener('click', show_connect_modal);
+//sidconnect wallet button click
+disconnect_wallet_button.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+    location.reload();
+}));
+//adding event listeners to all wallet buttons
+phantom.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+    exports.wallet_type = 'phantom';
+    yield main();
+}));
+solflare.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+    exports.wallet_type = 'solflare';
+    yield main();
+}));
+brave.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+    exports.wallet_type = 'brave';
+    yield main();
+}));
+slope.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+    exports.wallet_type = 'slope';
+    yield main();
+}));
+return_button.addEventListener('click', function (e) {
+    modal.style.display = 'none';
+});
+//ME button dropdown
+ME_button.addEventListener('click', (e) => {
+    setTimeout(() => {
+        if (!exports.me_dropped) {
+            ME_menu.classList.add('dropdown-ME-visible');
+            exports.me_dropped = true;
+        }
+        else {
+            ME_menu.classList.remove('dropdown-ME-visible');
+            exports.me_dropped = false;
+        }
+    }, 100);
+});
+ME_button2.addEventListener('click', (e) => {
+    setTimeout(() => {
+        if (!exports.me_dropped) {
+            ME_menu.classList.add('dropdown-ME-visible');
+            exports.me_dropped = true;
+        }
+        else {
+            ME_menu.classList.remove('dropdown-ME-visible');
+            exports.me_dropped = false;
+        }
+    }, 100);
+});
+//side menu button function and logic
+const side_menu_event = () => {
+    if (!exports.side_menu_appeared) {
+        exports.side_menu_appeared = true;
+        side_menu.classList.add('side-menu-appear');
+        side_menu_button.removeEventListener('click', side_menu_event);
+        setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+            for (var i = 0; i < side_text.length; i++) {
+                yield sleep(100);
+                const text = side_text[i];
+                text.classList.add('text-side-appear');
+            }
+            side_menu_button.addEventListener('click', side_menu_event);
+        }), 300);
+    }
+    else {
+        exports.side_menu_appeared = false;
+        side_menu_button.removeEventListener('click', side_menu_event);
+        for (var i = 0; i < side_text.length; i++) {
+            const text = side_text[i];
+            text.classList.remove('text-side-appear');
+        }
+        setTimeout(() => {
+            side_menu.classList.remove('side-menu-appear');
+            side_menu_button.addEventListener('click', side_menu_event);
+        }, 300);
+    }
+};
+side_menu_button.addEventListener('click', side_menu_event);
+//functionality and fancy effects for scroll up button
+view_up_button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+view_up_button.addEventListener('mouseover', () => {
+    if (exports.is_arrow_animating) {
+        return;
+    }
+    exports.is_arrow_animating = true;
+    var num = 0;
+    exports.temp_id = setInterval(() => {
+        num += 1;
+        const duplicate = document.createElement('img');
+        duplicate.src = arrow_pic.src;
+        duplicate.style.cssText = arrow_pic.style.cssText;
+        duplicate.className = arrow_pic.className;
+        arrow_pic.parentNode.insertBefore(duplicate, arrow_pic.nextSibling);
+        duplicate.classList.add('arrow-float-up');
+        setTimeout(() => {
+            duplicate.remove();
+        }, 500);
+        if (num === 3) {
+            clearInterval(exports.temp_id);
+            exports.is_arrow_animating = false;
+        }
+    }, 500);
+});

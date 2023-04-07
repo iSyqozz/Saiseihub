@@ -4,11 +4,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">">
     <title>Redemption</title>
-    <link rel="stylesheet/less" type="text/css" href="redemption/styles/snack.less">
-    <link rel="stylesheet" type="text/css" href="redemption/styles/main-style.css">
-    <link rel="stylesheet" type="text/css" href="redemption/styles/connect-style.css">
-    <link rel="stylesheet" type="text/css" href="redemption/styles/loader.css">
-    <link rel="stylesheet" type="text/css" href="redemption/styles/red-style.css">    
+    <link rel="stylesheet/less" type="text/css" href="./styles/snack.less">
+    <link rel="stylesheet" type="text/css" href="./styles/main-style.css">
+    <link rel="stylesheet" type="text/css" href="./styles/connect-style.css">
+    <link rel="stylesheet" type="text/css" href="./styles/loader.css">
+    <link rel="stylesheet" type="text/css" href="./styles/red-style.css">    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -23,16 +23,16 @@
       
       <!--Nav bar left logos and project links-->
       <div class="nav-left nav-right">
-        <a class="logo"href="https://saisei.io"><img src="redemption/assets/BlackBlueSaiSei.png" alt=""></a>
-        <a class="logo menu-button"><img src="redemption/assets/menu-symbol.svg" alt=""></a>
-        <a class="text" target="_blank" href="https://discord.gg/VNThGUTWzG"> <img id="discord-logo" src="redemption/assets/discord.svg" alt=""> Discord</a>
-        <a class="text" target="_blank" href="https://twitter.com/Suteki_NFT"><img id="twitter-logo" src="redemption/assets/twitter.svg" alt="">Twitter</a>
-        <a class="text me-button" style="cursor: pointer;"> <img id="ME-logo" src="redemption/assets/ME.png" alt=""> Buy Now</a>
+        <a class="logo"href="https://saisei.io"><img src="./assets/BlackBlueSaiSei.png" alt=""></a>
+        <a class="logo menu-button"><img src="./assets/menu-symbol.svg" alt=""></a>
+        <a class="text" target="_blank" href="https://discord.gg/VNThGUTWzG"> <img id="discord-logo" src="./assets/discord.svg" alt=""> Discord</a>
+        <a class="text" target="_blank" href="https://twitter.com/Suteki_NFT"><img id="twitter-logo" src="./assets/twitter.svg" alt="">Twitter</a>
+        <a class="text me-button" style="cursor: pointer;"> <img id="ME-logo" src="./assets/ME.png" alt=""> Buy Now</a>
       </div>
 
     <!--wallet box and address box-->
     <div class="wallet-box">
-        <button class="disconnect-wallet"><img class="disconnect" src="redemption/assets/shut-down.svg" alt=""></button>
+        <button class="disconnect-wallet"><img class="disconnect" src="./assets/shut-down.svg" alt=""></button>
         <button class="connect-wallet">Connect wallet</button>
         <div class="dropdown-wallet-info">
 
@@ -41,7 +41,7 @@
           
 
           <div>
-            <img class="wallet-info-balance-logo wallet-type-logo" src="redemption/assets/phantom.svg" alt="">
+            <img class="wallet-info-balance-logo wallet-type-logo" src="./assets/phantom.svg" alt="">
             <div class="wallet-info-balance-text">• Provider:</div> 
             <div class="wallet-info-balance-wallet wallet-type-text">Phantom</div> 
           </div>
@@ -50,13 +50,13 @@
           <div class="wallet-info-headers"><span>balances</span></div>
       
           <div> 
-            <img class="wallet-info-balance-logo" src="redemption/assets/Solana-Logo.png" alt="">
+            <img class="wallet-info-balance-logo" src="./assets/Solana-Logo.png" alt="">
             <div class="wallet-info-balance-text">• SOL:</div> 
             <div class="wallet-info-balance-sol">---</div>
           </div>
     
           <div> 
-            <img class="wallet-info-balance-logo" src="redemption/assets/kai-logo.png" alt="">
+            <img class="wallet-info-balance-logo" src="./assets/kai-logo.png" alt="">
             <div class="wallet-info-balance-text">• KAI:</div> 
             <div class="wallet-info-balance-token">---</div>
           </div>
@@ -95,10 +95,10 @@
   <div class="modal1-box">
     <div class="modal1-content">
         <h2 class="modal1-title">Choose a wallet</h2>
-          <button class="wallet-btn" id="Phantom"> <img src="redemption/assets/phantom.svg" alt=""><div>Phantom Wallet</div> </button>
-          <button class="wallet-btn" id="Solflare"><img src="redemption/assets/solflare.svg" alt=""><div>Solflare Wallet</div></button>
-          <button class="wallet-btn" id="Brave"><img src="redemption/assets/Brave.svg" alt=""><div>Brave Wallet</div></button>
-          <button class="wallet-btn" id="Slope"><img src="redemption/assets/slope.svg" alt=""><div>Slope Wallet</div></button>
+          <button class="wallet-btn" id="Phantom"> <img src="./assets/phantom.svg" alt=""><div>Phantom Wallet</div> </button>
+          <button class="wallet-btn" id="Solflare"><img src="./assets/solflare.svg" alt=""><div>Solflare Wallet</div></button>
+          <button class="wallet-btn" id="Brave"><img src="./assets/Brave.svg" alt=""><div>Brave Wallet</div></button>
+          <button class="wallet-btn" id="Slope"><img src="./assets/slope.svg" alt=""><div>Slope Wallet</div></button>
           <button class="wallet-btn" id="quit"><span>Return</span></button>
       </div>
   </div>
@@ -125,8 +125,37 @@
         
         </div>
 
-        <button class="wallet-btn deposit-modal-button" id="quit"><span>Deposit</span></button>
+        <button class="wallet-btn deposit-modal-button" id="quit"><span>confirm</span></button>
         <button class="wallet-btn deposit-modal-button return" id="quit"><span>return</span></button>
+
+        
+      </div>
+  </div>
+</div>
+
+
+<div class="modal3">
+  <div class="modal3-box">
+    <div class="modal3-content">
+        <h2 class="modal3-title">Withdraw</h2>
+        <div class="deposit-amount-container">
+          
+          <div class="withdraw-amount-indicator"><div>0</div></div>
+          
+          <div class="slider2">
+            <div class="slider-bar2">
+              <div class="slider-progress2"></div>
+              <div class="slider-handle2"></div>
+            </div>
+            <div class="slider-value2"></div>
+          </div>
+          
+          <div class="max-button2"><div>MAX</div></div>
+        
+        </div>
+
+        <button class="wallet-btn withdraw-modal-button" id="quit"><span>confirm</span></button>
+        <button class="wallet-btn withdraw-modal-button return" id="quit"><span>return</span></button>
 
         
       </div>
@@ -176,18 +205,18 @@
 
 
 <!--Background assets-->
-<img class="saisei-text" src="redemption/assets/Saisei-text.png" alt="">
-<img class="clouds cloud1" src="redemption/assets/cloud_1.png" alt="">
-<img class="clouds cloud2" src="redemption/assets/cloud_1.png" alt="">
-<img class="clouds cloud3" src="redemption/assets/cloud_1.png" alt="">
-<img class="clouds cloud4" src="redemption/assets/cloud_1.png" alt="">
-<img class="clouds cloud5" src="redemption/assets/cloud_1.png" alt="">
-<img class="clouds cloud6" src="redemption/assets/cloud_1.png" alt="">
-<img class="clouds cloud7" src="redemption/assets/cloud_1.png" alt="">
+<img class="saisei-text" src="./assets/Saisei-text.png" alt="">
+<img class="clouds cloud1" src="./assets/cloud_1.png" alt="">
+<img class="clouds cloud2" src="./assets/cloud_1.png" alt="">
+<img class="clouds cloud3" src="./assets/cloud_1.png" alt="">
+<img class="clouds cloud4" src="./assets/cloud_1.png" alt="">
+<img class="clouds cloud5" src="./assets/cloud_1.png" alt="">
+<img class="clouds cloud6" src="./assets/cloud_1.png" alt="">
+<img class="clouds cloud7" src="./assets/cloud_1.png" alt="">
 <div class="up-arrow-container">
-  <img class="up-arrow1" src="redemption/assets/up-arrow.svg" alt="">
-  <img class="up-arrow2" src="redemption/assets/up-arrow.svg" alt="">
-  <img class="up-arrow3" src="redemption/assets/up-arrow.svg" alt="">
+  <img class="up-arrow1" src="./assets/up-arrow.svg" alt="">
+  <img class="up-arrow2" src="./assets/up-arrow.svg" alt="">
+  <img class="up-arrow3" src="./assets/up-arrow.svg" alt="">
 </div>
 
 <!--sized box for layout-->
@@ -211,15 +240,15 @@
     </div>
 
     <div class="logo-container">
-      <img class="pool-logo" src="redemption/assets/Solana-Logo.png" alt="">
-      <img class="qm-grey" src="redemption/assets/grey-question-mark.png" alt="">
+      <img class="pool-logo" src="./assets/Solana-Logo.png" alt="">
+      <img class="qm-grey" src="./assets/grey-question-mark.png" alt="">
     </div>
 
     <div class="info-sum">
       <div class="info-top">
         <span class="rate-text">exchange rate</span>
         <span class="rate-info">1 $KAI = <span>&nbsp;---</span> SOL</span>
-        <img class="refresh-ind" src="redemption/assets/refresh.webp" alt="">
+        <img class="refresh-ind" src="./assets/refresh.webp" alt="">
       </div>
       
       <div class="info-mid">
@@ -244,15 +273,15 @@
     </div>
 
     <div class="logo-container">
-      <img class="pool-logo" src="redemption/assets/usd-coin-usdc-logo.svg" alt="">
-      <img class="qm-grey" src="redemption/assets/grey-question-mark.png" alt="">
+      <img class="pool-logo" src="./assets/usd-coin-usdc-logo.svg" alt="">
+      <img class="qm-grey" src="./assets/grey-question-mark.png" alt="">
     </div>
 
     <div class="info-sum">
       <div class="info-top">
         <span class="rate-text">exchange rate</span>
         <span class="rate-info">1 $KAI = <span>&nbsp;---</span> USDC</span>
-        <img class="refresh-ind" src="redemption/assets/refresh.webp" alt="">
+        <img class="refresh-ind" src="./assets/refresh.webp" alt="">
       </div>
       <div class="info-mid">
       
@@ -275,8 +304,8 @@
     </div>
 
     <div class="logo-container">
-      <img class="pool-logo" src="redemption/assets/bonk-logo.png" alt="">
-      <img class="qm-grey" src="redemption/assets/grey-question-mark.png" alt="">
+      <img class="pool-logo" src="./assets/bonk-logo.png" alt="">
+      <img class="qm-grey" src="./assets/grey-question-mark.png" alt="">
         
     </div>
 
@@ -284,7 +313,7 @@
       <div class="info-top">
         <span class="rate-text">exchange rate</span>
         <span class="rate-info">1 $KAI = <span>&nbsp;---</span> BONK</span>
-        <img class="refresh-ind" src="redemption/assets/refresh.webp" alt="">
+        <img class="refresh-ind" src="./assets/refresh.webp" alt="">
       </div>
       <div class="info-mid">
         <div class="pool-amount info-slot"><div class="info-mid-text1">Pool Reserves:</div><div class="info-mid-text2">Inactive</div></div>
@@ -352,7 +381,7 @@
         </div>
 
         <div class="segment-content-container withdraw-container" style="padding: 0;">
-          <button class="connect-wallet pool-button-inactive">Withdraw</button>
+          <button class="connect-wallet pool-button-inactive">Withdraw kai</button>
         </div>
 
       </div>
@@ -376,7 +405,7 @@
         </div>
 
         <div class="segment-content-container withdraw-container" style="padding: 0;">
-          <button class="connect-wallet pool-button-inactive">Withdraw</button>
+          <button class="connect-wallet pool-button-inactive">Withdraw kai</button>
         </div>
 
       </div>
@@ -400,7 +429,7 @@
         </div>
 
         <div class="segment-content-container withdraw-container" style="padding: 0;">
-          <button class="connect-wallet pool-button-inactive">Withdraw</button>
+          <button class="connect-wallet pool-button-inactive">Withdraw kai</button>
         </div>
 
       </div>
@@ -528,7 +557,7 @@
   
 
 <!--JS scripts-->
-<script type="module" src="redemption/build/red-bundle.js" ></script>
+<script type="module" src="./build/red-bundle.js" ></script>
     
 
 </body>

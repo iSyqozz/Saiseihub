@@ -497,6 +497,182 @@
 
 
 
+.modal3{
+    display: none;
+    letter-spacing: 2px;
+    font-family: 'Bebas Neue', cursive;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999999;
+    overflow: auto;
+  }
+  
+.modal3-box {
+  background: rgb(0, 4, 20);
+  border-radius: 12px;
+  padding: 20px;
+  width: 250px;
+  text-align: left;
+  animation-name: modalFadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes modalFadeIn {
+  from {
+    transform: translateY(70%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal3-title {
+  font-family: 'Bebas Neue', cursive;    
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal3-content {
+  font-family: 'Bebas Neue', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.withdraw-amount-container{
+    width: 100%;
+    height: 65px;
+    background:linear-gradient(90deg, rgb(22, 25, 36) 2%, #4e4e50 50%, rgb(22, 25, 36) 98%);
+    border-radius: 1rem;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.withdraw-amount-indicator{
+    background: linear-gradient(90deg, #000414 2%, #000414b7 50%, #000414 98%);
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 20;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    letter-spacing: 0px;
+}
+
+.slider2 {
+    width: 90px;
+    height: 30px;
+    background: linear-gradient(90deg, rgb(22, 25, 36) 2%, #4e4e50 50%, rgb(22, 25, 36) 98%);
+    position: relative;
+    border-radius: 2rem;
+  }
+  
+  .slider-bar2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 0;
+    overflow: hidden;
+    
+  }
+  
+  .slider-progress2 {
+    margin-left: 5px;
+    margin-top: 8px;
+    width: 0;
+    height: 50%;
+    background: linear-gradient(90deg, #000414 2%, #000414b7 50%, rgb(67, 67, 68) 98%);
+    border-radius: 20rem 5rem 5rem 20rem;  
+}
+  
+  .slider-handle2 {
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    border: 2px solid #aaa;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    top: 4px;
+    left: 0;
+  }
+  
+  .slider-value2 {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: rgb(211, 211, 211);
+  }
+
+.max-button2{
+    border-radius: 5px;
+    font-size: 18;
+    width: 40px;
+    height: 30px;
+    color: white;
+    background: linear-gradient(90deg, #000414 2%, #000414b7 50%, #000414 98%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;  
+}
+
+.max-button2:hover{
+    background: linear-gradient(90deg, #010516 2%, #010825b7 50%, #010824 98%);
+
+
+}
+
+.withdraw-modal-button{
+  width: 120px;
+  margin-top: 20px;
+  padding: 13 15 12 15;
+  font-size: 18;
+  background: linear-gradient(90deg, #3d33a1, #2c2482) !important;
+}
+
+.withdraw-modal-button:hover{
+  background:linear-gradient(90deg, #4a439c, #3d33a1) !important;
+}
+
+.wallet-btn.withdraw-modal-button.return{
+    width: 120px;
+    margin-top: 20px;
+    padding: 13 15 12 15;
+    font-size: 18;
+    background: #702626 !important;
+    margin-top: 2px;
+}
+  
+.wallet-btn.withdraw-modal-button.return:hover{
+    background: linear-gradient(90deg, #975e5e 0%, #834242 80%) !important;
+}
+
+
+
 
 .portfolio-header-title{
     width: 100%;

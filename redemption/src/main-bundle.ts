@@ -72,7 +72,7 @@ function sleep(ms:number) {
  async function get_sol_balance(){
 
     var res:number = 0;
-    await fetch('https://saisei-server.com/get_balance', {
+    await fetch('http://192.168.1.43:3000/get_balance', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -96,7 +96,7 @@ function sleep(ms:number) {
 async function get_kai_balance(){
 
     var res:number = 0;
-    await fetch('https://saisei-server.com/get_kai', {
+    await fetch('http://192.168.1.43:3000/get_kai', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
